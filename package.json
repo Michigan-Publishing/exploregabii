@@ -53,10 +53,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@storybook/addon-actions": "^4.0.0",
-    "@storybook/addon-links": "^4.0.0",
-    "@storybook/addons": "^4.0.0",
-    "@storybook/react": "^4.0.0",
+    "@storybook/addon-actions": "^5.0.6",
+    "@storybook/addon-links": "^5.0.6",
+    "@storybook/addons": "^5.0.6",
+    "@storybook/react": "^5.0.6",
     "babel-loader": "^8.0.4",
     "gatsby-plugin-compile-es6-packages": "^1.0.6",
     "prettier": "^1.16.4"
