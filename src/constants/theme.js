@@ -9,6 +9,7 @@ const colors = {
   dark1: "#00051c",
   dark2: "#8796a8",
   black: "#111417",
+  blackTranslucent: "rgba(17, 20, 23, .9)",
 }
 
 export const theme = {
