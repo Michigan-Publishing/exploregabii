@@ -12,7 +12,6 @@ import Point from "../components/point"
 import Markdown from "../components/markdown"
 import RelatedContent from "../components/relatedContent"
 import Breakpoints from "../components/breakpoints"
-import ExpandableBlockquote from "../components/expandableBlockquote"
 import { FulcrumImageVideo, FulcrumTextAudio } from "../components/fulcrum"
 import {
   Game1,
@@ -105,7 +104,6 @@ class ContentPages extends Component {
       data,
     } = this.props
     const contextComponents = {
-      ExpandableBlockquote,
       FulcrumImageVideo,
       FulcrumTextAudio,
       AboutTheAuthor,
