@@ -13,13 +13,6 @@ import Markdown from "../components/markdown"
 import RelatedContent from "../components/relatedContent"
 import Breakpoints from "../components/breakpoints"
 import { FulcrumImageVideo, FulcrumTextAudio } from "../components/fulcrum"
-import {
-  Game1,
-  Game2,
-  PieChart,
-  WordCloud,
-  MultimodalGame,
-} from "../components/games"
 import AboutTheAuthor from "../components/aboutTheAuthor"
 
 // eslint-disable-next-line
