@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import Background from "../background";
-import SiteHeading from "../siteHeading";
-import Breadcrumbs from "../breadcrumbs";
-import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu";
-import FlyoutMenu from "../flyoutMenu";
-import Footer, { FOOTER_HEIGHT } from "../footer";
-import { buildFrontmatterLookup } from "../../utils/node";
-import palette from "../../utils/palette";
-import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
+import React, { Component, Fragment } from "react"
+import styled from "styled-components"
+import Background from "../background"
+import SiteHeading from "../siteHeading"
+import Breadcrumbs from "../breadcrumbs"
+import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
+import FlyoutMenu from "../flyoutMenu"
+import Footer, { FOOTER_HEIGHT } from "../footer"
+import { buildFrontmatterLookup } from "../../utils/node"
+import palette from "../../utils/palette"
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 
 const HeadingWrapper = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 1.5) 50%, rgba(0, 0, 0, 0));
@@ -32,7 +32,7 @@ const HeadingWrapper = styled.div`
     background: ${palette.contentBackground};
     border-bottom: 2px solid ${palette.relatedBackground};
   }
-`;
+`
 
 const ContentArea = styled.div`
   display: flex;
@@ -47,21 +47,21 @@ const ContentArea = styled.div`
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     margin-top: 0;
   }
-`;
+`
 
 const HeadingRow = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-`;
+`
 export default class extends Component {
   static defaultProps = {
     showBreadcrumbs: true,
-    breadcrumbLinks: []
-  };
+    breadcrumbLinks: [],
+  }
 
-  state = { showFlyout: false, headingHeight: 0 };
+  state = { showFlyout: false, headingHeight: 0 }
 
   shouldShowBreadcrumbs = () => {
     return (
@@ -69,68 +69,68 @@ export default class extends Component {
       this.props.data &&
       this.props.data.allMdx &&
       this.props.data.allMdx.edges
-    );
-  };
+    )
+  }
 
   componentDidMount() {
-    this.buildLinkTree();
+    this.buildLinkTree()
     this.setState({
-      headingHeight: this.headingWrapper.clientHeight
-    });
+      headingHeight: this.headingWrapper.clientHeight,
+    })
   }
 
   buildLinkTree = () => {
     const {
       data: {
-        allMdx: { edges: nodes }
-      }
-    } = this.props;
+        allMdx: { edges: nodes },
+      },
+    } = this.props
 
-    const lookup = buildFrontmatterLookup(nodes, true, true);
+    const lookup = buildFrontmatterLookup(nodes, true, true)
 
-    return lookup;
-  };
+    return lookup
+  }
 
   buildBreadcrumbLinks = () => {
     if (this.shouldShowBreadcrumbs()) {
       const {
         pageContext: { key },
         data: {
-          allMdx: { edges: nodes }
-        }
-      } = this.props;
-      const lookup = buildFrontmatterLookup(nodes, true);
+          allMdx: { edges: nodes },
+        },
+      } = this.props
+      const lookup = buildFrontmatterLookup(nodes, true)
 
       // walk backwards up the lookup starting with this key
-      let currentKey = key;
-      let list = [];
+      let currentKey = key
+      let list = []
       while (currentKey) {
-        const data = lookup[currentKey];
+        const data = lookup[currentKey]
         list.push({
           title: data.title,
-          slug: data.slug
-        });
-        currentKey = data.parentKey;
+          slug: data.slug,
+        })
+        currentKey = data.parentKey
       }
 
       list.push({
         title: "home",
-        slug: "/"
-      });
-      const output = list.reverse();
-      return output;
+        slug: "/",
+      })
+      const output = list.reverse()
+      return output
     }
-  };
+  }
 
   render() {
-    const { contentStyles } = this.props;
-    const linkTree = this.buildLinkTree();
+    const { contentStyles } = this.props
+    const linkTree = this.buildLinkTree()
 
     return (
       <MenuProvider
         onClose={() => {
-          this.setState({ showFlyout: false });
-          document.body.classList.remove("modalOpen");
+          this.setState({ showFlyout: false })
+          document.body.classList.remove("modalOpen")
         }}
       >
         <Fragment>
@@ -148,7 +148,7 @@ export default class extends Component {
                         setToggleElement={setToggleElement}
                         closeElement={closeElement}
                         onClick={() => {
-                          document.body.classList.add("modalOpen");
+                          document.body.classList.add("modalOpen")
                         }}
                       />
                     </span>
@@ -170,6 +170,6 @@ export default class extends Component {
           </Background>
         </Fragment>
       </MenuProvider>
-    );
+    )
   }
 }
