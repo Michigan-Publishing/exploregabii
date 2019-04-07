@@ -1,37 +1,35 @@
-import React, { Component } from "react";
-import { graphql } from "gatsby";
+import React, { Component } from "react"
+import { graphql } from "gatsby"
 
-import MDXRenderer from "gatsby-mdx/mdx-renderer";
-import { withMDXScope } from "gatsby-mdx/context";
-import { Helmet } from "react-helmet";
+import MDXRenderer from "gatsby-mdx/mdx-renderer"
+import { withMDXScope } from "gatsby-mdx/context"
+import { Helmet } from "react-helmet"
 
-import ContentArea from "../components/contentArea";
-import Navigation from "../components/secondaryNavigation";
-import SiteContainer from "../components/siteContainer";
-import Point from "../components/point";
-import Markdown from "../components/markdown";
-import RelatedContent from "../components/relatedContent";
-import Breakpoints from "../components/breakpoints";
-import ExpandableBlockquote from "../components/expandableBlockquote";
-import { FulcrumImageVideo, FulcrumTextAudio } from "../components/fulcrum";
-import { Game1, Game2, PieChart, WordCloud, MultimodalGame } from "../components/games";
-import AboutTheAuthor from "../components/aboutTheAuthor";
+import ContentArea from "../components/contentArea"
+import Navigation from "../components/secondaryNavigation"
+import SiteContainer from "../components/siteContainer"
+import Point from "../components/point"
+import Markdown from "../components/markdown"
+import RelatedContent from "../components/relatedContent"
+import Breakpoints from "../components/breakpoints"
+import { FulcrumImageVideo, FulcrumTextAudio } from "../components/fulcrum"
+import AboutTheAuthor from "../components/aboutTheAuthor"
 
 // eslint-disable-next-line
-import styles from "../styles/global.css";
-import VisuallyHidden from "../components/visuallyHidden";
+import styles from "../styles/global.css"
+import VisuallyHidden from "../components/visuallyHidden"
 
 function mapLinkProperties(edges) {
   if (!edges) {
-    return [];
+    return []
   }
 
   const output = edges.map(edge => ({
     title: edge.node.frontmatter.title,
-    href: edge.node.fields.slug
-  }));
+    href: edge.node.fields.slug,
+  }))
 
-  return output;
+  return output
 }
 
 function shouldShowRelatedContent(data) {
@@ -41,78 +39,72 @@ function shouldShowRelatedContent(data) {
     data.siblingPages.edges &&
     data.siblingPages.edges.length > 0 &&
     shouldShowChildLinks(data) === false
-  );
+  )
 }
 
 function mapSiblingContent(data) {
   if (!shouldShowRelatedContent(data)) {
-    return null;
+    return null
   }
 
   return data.siblingPages.edges.map(({ node }) => ({
     href: node.fields.slug,
-    title: node.frontmatter.title
-  }));
+    title: node.frontmatter.title,
+  }))
 }
 
 function shouldShowChildLinks(data) {
-  return !!(data.childPages && data.childPages.edges.length > 0);
+  return !!(data.childPages && data.childPages.edges.length > 0)
 }
 
 function isIE11() {
   try {
-    return !!window.MSInputMethodContext && !!document.documentMode;
+    return !!window.MSInputMethodContext && !!document.documentMode
   } catch (ex) {
-    return false;
+    return false
   }
 }
 
 function getBodyContent(data) {
-  const items = data.post.rawBody.split("---");
-  
-  return items.length > 0 ? items[items.length - 1] : "";
+  const items = data.post.rawBody.split("---")
+
+  return items.length > 0 ? items[items.length - 1] : ""
 }
 
-function hasContent(data) { 
-  return data.post.wordCount.words || getBodyContent(data) != "";
+function hasContent(data) {
+  return data.post.wordCount.words || getBodyContent(data) != ""
 }
 
 class ContentPages extends Component {
   constructor(props) {
-    super(props);
-    this.state = { headerOffset: 0 };
+    super(props)
+    this.state = { headerOffset: 0 }
   }
 
   componentDidMount() {
-    document.body.classList.remove("modalOpen");
+    document.body.classList.remove("modalOpen")
 
     this.setState({
       headerOffset: this.siteContainer
         ? this.siteContainer.headingWrapper.clientHeight
-        : 0
-    });
+        : 0,
+    })
   }
 
   render() {
     const {
       pageContext: { title },
-      data
-    } = this.props;
+      data,
+    } = this.props
     const contextComponents = {
-      ExpandableBlockquote,
       FulcrumImageVideo,
       FulcrumTextAudio,
-      Game1,
-      Game2,
-      PieChart,
-      WordCloud,
-      MultimodalGame,
-      AboutTheAuthor
-    };
-    const newScope = { ...this.props.scope, ...contextComponents };
-    const newProps = { ...{ ...this.props, ...{ scope: newScope } } };
+      AboutTheAuthor,
+    }
+    const newScope = { ...this.props.scope, ...contextComponents }
+    const newProps = { ...{ ...this.props, ...{ scope: newScope } } }
 
-    const useMarkdownInsteadOfMDX = isIE11();
+    const useMarkdownInsteadOfMDX = isIE11()
 
     return (
       <Breakpoints>
@@ -122,7 +114,7 @@ class ContentPages extends Component {
         >
           <Helmet>
             <meta charSet="utf-8" />
-            <title>{title} | Developing Writers</title>
+            <title>{title} | Explore Gabii</title>
           </Helmet>
           <VisuallyHidden>
             <h1>{title}</h1>
@@ -154,11 +146,11 @@ class ContentPages extends Component {
           )}
         </SiteContainer>
       </Breakpoints>
-    );
+    )
   }
 }
 
-export default withMDXScope(ContentPages);
+export default withMDXScope(ContentPages)
 
 export const pageQuery = graphql`
   query($id: String!, $key: String!, $parentKey: String) {
@@ -225,4 +217,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
