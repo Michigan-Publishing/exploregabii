@@ -3,6 +3,7 @@ import { configure, addDecorator } from "@storybook/react"
 import { withKnobs } from "@storybook/addon-knobs"
 import { ThemeProvider } from "styled-components"
 import { theme } from "../src/constants/theme"
+import { withA11y } from "@storybook/addon-a11y"
 
 // automatically import all files ending in *.stories.js
 const req = require.context("../src", true, /\.stories\.js$/)
@@ -12,4 +13,6 @@ function loadStories() {
 
 addDecorator(story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
 addDecorator(withKnobs)
+addDecorator(withA11y)
+
 configure(loadStories, module)

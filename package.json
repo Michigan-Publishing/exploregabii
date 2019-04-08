@@ -19,7 +19,6 @@
     "@mdx-js/mdx": "^0.15.5",
     "@mdx-js/tag": "^0.15.0",
     "@reach/menu-button": "^0.1.7",
-    "@storybook/addon-knobs": "^5.0.6",
     "formik": "^1.4.1",
     "gatsby": "^2.0.0",
     "gatsby-mdx": "^0.2.0",
@@ -54,7 +53,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@storybook/addon-a11y": "^5.0.6",
     "@storybook/addon-actions": "^5.0.6",
+    "@storybook/addon-knobs": "^5.0.6",
     "@storybook/addon-links": "^5.0.6",
     "@storybook/addons": "^5.0.6",
     "@storybook/react": "^5.0.6",
