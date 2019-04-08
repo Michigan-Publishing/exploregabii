@@ -6,14 +6,14 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/pages`,
-        name: "markdown-pages"
-      }
+        name: "markdown-pages",
+      },
     },
     {
       resolve: "gatsby-mdx",
       options: {
-        extensions: [".mdx", ".md"]
-      }
+        extensions: [".mdx", ".md"],
+      },
     },
     {
       resolve: "gatsby-plugin-netlify-cms",
@@ -22,8 +22,8 @@ module.exports = {
          * One convention is to place your Netlify CMS customization code in a
          * `src/cms` directory.
          */
-        modulePath: `${__dirname}/src/cms/cms.js`
-      }
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
     },
     "gatsby-plugin-zopfli",
     "gatsby-transformer-remark",
@@ -33,8 +33,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-compile-es6-packages`,
       options: {
-        modules: [`gatsby-mdx`]
-      }
+        modules: [`gatsby-mdx`],
+      },
     },
-  ]
-};
+  ],
+}
