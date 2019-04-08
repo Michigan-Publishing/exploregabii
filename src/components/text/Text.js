@@ -1,12 +1,22 @@
+import React from "react"
 import styled from "styled-components"
+import { Text as BassText } from "rebass"
 
-export const textCss = `
-  font-family: Helvetica, Arial, sans-serif;
-`
+export const variants = {
+  default: "default",
+  serif: "serif",
+}
 
-const Text = styled.span`
-  ${textCss};
-  color: ${({ theme }) => theme.colors.brandColor};
-`
+function isSerif(variant) {
+  return variant === variants.serif || variant === variants.smallSerif
+}
 
-export default Text
+export function Text({ variant, ...props }) {
+  return (
+    <BassText
+      fontFamily={isSerif(variant) ? "serif" : "sans"}
+      {...props}
+      as="span"
+    />
+  )
+}

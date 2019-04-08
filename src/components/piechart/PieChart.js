@@ -1,24 +1,23 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment, Component } from "react"
 
-import VisuallyHidden from "../visuallyHidden";
-import styled from "styled-components";
+import VisuallyHidden from "../visuallyHidden"
+import styled from "styled-components"
 
-import { PieChart } from "react-easy-chart";
-import { TextCss } from "../text/Text";
-import palette from "../../utils/palette";
-import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
+import { PieChart } from "react-easy-chart"
+import palette from "../../utils/palette"
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 
 const ButtonList = styled.ul`
   list-style-type: none;
   width: 100%;
-`;
+`
 
 /* update the transform on the first text element in the piechart */
 const PieChartWrapper = styled.div`
   text:first-child {
     transform: translate(100.964px, -30.8243px);
   }
-`;
+`
 
 const ButtonListItem = styled.li`
   padding: 0;
@@ -27,7 +26,6 @@ const ButtonListItem = styled.li`
     width: 40%;
     border: 1px solid ${palette.white};
     background: none;
-    ${TextCss};
     color: ${palette.white};
     font-size: 1.25rem;
     cursor: pointer;
@@ -38,17 +36,17 @@ const ButtonListItem = styled.li`
       width: 100%;
     }
   }
-`;
+`
 
 class Chart extends Component {
-  state = { showPieChart: false };
+  state = { showPieChart: false }
 
   showPieChart = () => {
-    this.setState({ showPieChart: true });
-  };
+    this.setState({ showPieChart: true })
+  }
 
   render() {
-    const { data } = this.props;
+    const { data } = this.props
 
     return (
       <Fragment>
@@ -89,13 +87,13 @@ class Chart extends Component {
                   labels
                   styles={{
                     ".chart_lines": {
-                      strokeWidth: 0
+                      strokeWidth: 0,
                     },
                     ".chart_text": {
                       fontFamily: "sans-serif",
                       fontSize: "1.25rem",
-                      fill: "#333"
-                    }
+                      fill: "#333",
+                    },
                   }}
                   data={data}
                 />
@@ -122,8 +120,8 @@ class Chart extends Component {
           </table>
         </VisuallyHidden>
       </Fragment>
-    );
+    )
   }
 }
 
-export default Chart;
+export default Chart
