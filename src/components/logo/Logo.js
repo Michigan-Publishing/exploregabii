@@ -3,17 +3,13 @@ import src from "./primary.svg"
 
 export const variants = {
   primary: "primary",
-  light: "light",
+  dark: "dark",
   alternate: "alternate",
 }
 
+console.log("SRC", src)
 function Logo({ variant = variants.primary }) {
-  return (
-    <>
-      <img src={src} />
-      <img src={require(`./${variant}.svg`)} alt="logo" />
-    </>
-  )
+  return <img src={require(`./${variant}.svg`)} alt="logo" />
 }
 
 export default Logo
