@@ -2,8 +2,6 @@ import React, { useState } from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { textCss } from "../text/Text"
-
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -12,7 +10,6 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-  ${textCss}
   position: absolute;
   top: 0;
   right: 60px;

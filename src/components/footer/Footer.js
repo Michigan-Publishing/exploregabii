@@ -1,16 +1,15 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { Link as GatsbyLink } from "gatsby";
-import palette from "../../utils/palette";
-import { textCss } from "../text/Text";
-import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
+import React, { Component, Fragment } from "react"
+import styled from "styled-components"
+import { Link as GatsbyLink } from "gatsby"
+import palette from "../../utils/palette"
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 
-import logo from "./umich-logo.png";
-import library from "./mliblogo.png";
-import press from "./press.png";
-import collaboratory from "./collaboratory.png";
+import logo from "./umich-logo.png"
+import library from "./mliblogo.png"
+import press from "./press.png"
+import collaboratory from "./collaboratory.png"
 
-export const FOOTER_HEIGHT = 172;
+export const FOOTER_HEIGHT = 172
 
 const FooterWrapper = styled.footer`
   border-top: 3px solid ${palette.relatedBackground};
@@ -21,14 +20,13 @@ const FooterWrapper = styled.footer`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  ${textCss}
   padding: 1rem 0 2rem 0;
   color: ${palette.contentBackground};
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     flex-direction: column;
   }
-`;
+`
 
 const Heading = styled.h4`
   font-size: 1.5rem;
@@ -38,7 +36,7 @@ const Heading = styled.h4`
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     font-size: 1rem;
   }
-`;
+`
 
 const ColumnWrapper = styled.div`
   display: flex;
@@ -47,7 +45,7 @@ const ColumnWrapper = styled.div`
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     flex-direction: column;
   }
-`;
+`
 
 const Column = styled.div`
   display: flex;
@@ -59,7 +57,7 @@ const Column = styled.div`
     font-size: 1rem;
     width: 100%;
   }
-`;
+`
 
 const Left = styled.div`
   width: 50%;
@@ -70,7 +68,7 @@ const Left = styled.div`
     justify-content: flex-start;
     margin-bottom: 2rem;
   }
-`;
+`
 
 const Right = styled(Left)`
   width: 50%;
@@ -93,14 +91,14 @@ const Right = styled(Left)`
     align-items: flex-start;
     justify-content: flex-start;
   }
-`;
+`
 
 const Link = styled(GatsbyLink)`
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     font-size: 1rem;
     line-height: 1.75rem;
   }
-`;
+`
 const ChildLink = styled(Link)`
   margin: 0.5rem;
   font-size: 0.75rem;
@@ -110,7 +108,7 @@ const ChildLink = styled(Link)`
     font-size: 0.75rem;
     line-height: 1rem;
   }
-`;
+`
 
 const LogoWrapper = styled.div`
   height: 100px;
@@ -121,7 +119,7 @@ const LogoWrapper = styled.div`
   & img {
     height: 100%;
   }
-`;
+`
 
 const LogoRow = styled.div`
   display: flex;
@@ -136,7 +134,7 @@ const LogoRow = styled.div`
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     margin-top: 1rem;
   }
-`;
+`
 
 const OtherLogos = styled.div`
   border-left: 2px solid rgba(${palette.rgbBlue}, 0.5);
@@ -159,7 +157,7 @@ const OtherLogos = styled.div`
       height: inherit;
     }
   }
-`;
+`
 
 class Footer extends Component {
   getLinkColumn = link => {
@@ -174,8 +172,8 @@ class Footer extends Component {
           </ChildLink>
         ))}
       </Fragment>
-    );
-  };
+    )
+  }
   render() {
     return (
       <FooterWrapper>
@@ -184,7 +182,7 @@ class Footer extends Component {
           <ColumnWrapper>
             {this.props.links
               .sort((a, b) => {
-                return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
+                return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
               })
               .map(link => (
                 <Column key={link.slug}>{this.getLinkColumn(link)}</Column>
@@ -214,7 +212,7 @@ class Footer extends Component {
           </OtherLogos>
         </Right>
       </FooterWrapper>
-    );
+    )
   }
 }
-export default Footer;
+export default Footer
