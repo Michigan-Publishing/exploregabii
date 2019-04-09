@@ -1,12 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import { color } from "styled-system"
-require("typeface-lato")
+import { color, fontFamily } from "styled-system"
+import { Heading as BassHeading } from "rebass"
 
-const Heading = styled.h1`
-  font-family: "Lato", Helvetica, sans-serif;
-  color: ${({ theme }) => theme.colors.brandColor};
-  ${color}
+const Heading = styled(BassHeading)`
+  font-family: ${({ theme }) => theme.fonts.heading};
 `
 
 function HeadingComponent({ level = 1, ...props }) {

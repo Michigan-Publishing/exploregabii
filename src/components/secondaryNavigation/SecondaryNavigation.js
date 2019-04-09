@@ -1,17 +1,15 @@
-import React, { Component } from "react";
-import { Link as GatsbyLink } from "gatsby";
-import styled from "styled-components";
-import palette from "../../utils/palette";
-import { textCss } from "../text/Text";
-import { TABLET_LANDSCAPE_WIDTH } from "../../constants";
+import React, { Component } from "react"
+import { Link as GatsbyLink } from "gatsby"
+import styled from "styled-components"
+import palette from "../../utils/palette"
+import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 
 export const Link = styled(GatsbyLink)`
   color: ${palette.white};
-  ${textCss};
   font-size: 2rem;
   text-decoration: none;
   position: flex;
-`;
+`
 
 const ListContainer = styled.ul`
   list-style-type: none;
@@ -21,13 +19,13 @@ const ListContainer = styled.ul`
     margin-top: 6rem;
     padding: 0;
   }
-`;
+`
 
 export const LinkBackground = `
   background-color: rgba(${palette.rgbContentBackground}, 0.8);
   padding: 1.5rem;
   border-radius: 1.5rem;
-`;
+`
 
 const ListItem = styled.li`
   ${LinkBackground}
@@ -41,37 +39,37 @@ const ListItem = styled.li`
     margin-left: 0.5rem;
     margin-right: 0.5rem;
   }
-`;
+`
 
 function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+  return Math.floor(Math.random() * Math.floor(max))
 }
 
 export default class extends Component {
-  state = { paddingHeight: 90 };
-  mounted = false;
+  state = { paddingHeight: 90 }
+  mounted = false
 
   componentDidMount() {
-    this.getPaddingAmount();
-    window.addEventListener("resize", this.getPaddingAmount);
+    this.getPaddingAmount()
+    window.addEventListener("resize", this.getPaddingAmount)
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.getPaddingAmount);
+    window.removeEventListener("resize", this.getPaddingAmount)
   }
 
   getPaddingAmount = () => {
-    const { linkProperties } = this.props;
-    const height = this.container.clientHeight / linkProperties.length;
-    this.setState({ paddingHeight: height > 90 ? 90 : height });
-  };
+    const { linkProperties } = this.props
+    const height = this.container.clientHeight / linkProperties.length
+    this.setState({ paddingHeight: height > 90 ? 90 : height })
+  }
 
   render() {
-    const { linkProperties } = this.props;
-    const { paddingHeight } = this.state;
+    const { linkProperties } = this.props
+    const { paddingHeight } = this.state
 
     if (!linkProperties) {
-      return null;
+      return null
     }
     return (
       <ListContainer ref={node => (this.container = node)}>
@@ -85,6 +83,6 @@ export default class extends Component {
           </ListItem>
         ))}
       </ListContainer>
-    );
+    )
   }
 }

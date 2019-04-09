@@ -1,31 +1,28 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { Link } from "gatsby";
+import React, { Component, Fragment } from "react"
+import styled from "styled-components"
+import { Link } from "gatsby"
 
-import palette from "../../utils/palette";
-import { textCss } from "../text/Text";
-import { Backdrop, Menu, MenuConsumer } from "react-flyout-menu";
+import palette from "../../utils/palette"
+import { Backdrop, Menu, MenuConsumer } from "react-flyout-menu"
 
 const Heading = styled.h2`
   display: flex;
   width: 100%;
   text-align: center;
-  ${textCss};
   color: ${palette.yellow};
   justify-content: center;
-`;
+`
 
 const LinkContainer = styled.div`
-  ${textCss};
   font-size: 2rem;
   opacity: ${props => props.opacity};
   margin: 1rem 0;
-`;
+`
 
 const StyledLink = styled(Link)`
   margin-bottom: ${props => (props.depth === 0 ? 0.5 : 0)}rem;
   display: inline-block;
-`;
+`
 
 const LinkWrapper = styled.div`
   display: flex;
@@ -45,15 +42,15 @@ const LinkWrapper = styled.div`
     display: inline-block;
     margin: 0.5rem 1rem;
   }
-`;
+`
 
 const LinkBlockWrapper = styled.div`
   margin-bottom: 1rem;
-`;
+`
 
 function buildLinks(items, depth = 0) {
   if (!items) {
-    return null;
+    return null
   }
 
   return items.map(item => (
@@ -66,18 +63,18 @@ function buildLinks(items, depth = 0) {
         {buildLinks(item.children, depth + 1)}
       </LinkWrapper>
     </LinkBlockWrapper>
-  ));
+  ))
 }
 
 export default class extends Component {
   render() {
-    const { items } = this.props;
+    const { items } = this.props
 
     const sortedItems = items.sort((a, b) => {
-      return a.title > b.title ? 1 : a.title < b.title ? -1 : 0;
-    });
+      return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
+    })
 
-    const links = buildLinks(sortedItems);
+    const links = buildLinks(sortedItems)
     return (
       <MenuConsumer>
         {({ toggleElement, setCloseElement }) => {
@@ -94,9 +91,9 @@ export default class extends Component {
               </Menu>
               <Backdrop />
             </Fragment>
-          );
+          )
         }}
       </MenuConsumer>
-    );
+    )
   }
 }
