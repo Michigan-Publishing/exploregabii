@@ -7,9 +7,8 @@ export const variants = {
   alternate: "alternate",
 }
 
-console.log("SRC", src)
-function Logo({ variant = variants.primary }) {
-  return <img src={require(`./${variant}.svg`)} alt="logo" />
+function Logo({ variant = variants.primary, ...props }) {
+  return <img src={require(`./${variant}.svg`)} alt="logo" {...props} />
 }
 
 export default Logo
