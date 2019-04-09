@@ -27,6 +27,11 @@ const Content = styled.div`
 `
 
 export class MapNavigation extends Component{
+  constructor(props) {
+    super(props);
+    this.mapper = React.createRef();
+  }
+
 	enterArea(area) {
     console.log('ENTER AREA', area);
 		this.setState({ hoveredArea: area, msg: `You entered ${area.shape} ${area.name} at coords ${JSON.stringify(area.coords)} !` });
@@ -39,19 +44,21 @@ export class MapNavigation extends Component{
 
   render() {
     const { imageSrc, map } = this.props;
-    console.log('MAPPER', this.mapper);
 
     return (
       <>
         <ImageMapper 
-          ref={mapper => this.mapper = mapper}
+          ref={this.mapper}
           src={imageSrc} 
           map={map}
+          key="mapper"
           onMouseEnter={area => this.enterArea(area)}
           onMouseLeave={area => this.leaveArea(area)} />
         {
-          map.areas.map(area => console.log('AREA', area) || (
-            <span style={{ backgroundColor: 'yellow', top: `${area.coords[1]}px`, left: `${area.coords[0]}px` }}>{area.name}</span>
+          console.log('IMAGE MAPPER', this.mapper) ||
+          console.log('IMAGE MAPPER', (this.mapper || {}).computeCenter) ||
+          map.areas.map(area => (
+            <span key={area.name} style={{ backgroundColor: 'yellow', top: `${area.coords[1]}px`, left: `${area.coords[0]}px` }}>{area.name}</span>
           ))
         }
       </>
