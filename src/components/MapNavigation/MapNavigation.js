@@ -1,67 +1,58 @@
 import React, { Component, useState } from "react"
-import PropTypes from "prop-types"
 import styled from "styled-components"
 import ImageMapper from 'react-image-mapper';
 
-import { textCss } from "../text/Text"
-import mapAgeCleaner from "map-age-cleaner";
-
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: center / cover no-repeat url("${props => props.src}");
-  position: relative;
-`
-
-const Content = styled.div`
-  ${textCss}
+const AreaTag = styled.span`
   position: absolute;
-  top: 0;
-  right: 60px;
-  width: 40%;
-  min-width: 400px;
-  background-color: ${({ theme }) => theme.colors.blackTranslucent};
-  color: ${({ theme }) => theme.colors.white};
-  padding: 2rem;
-  line-height: 1.25rem;
+  color: #fff;
+  padding: 10px;
+  background: rgba(0,0,0,0.8);
+  transform: translate3d(-50%, -50%, 0);
+  border-radius: 5px;
+  pointer-events: none;
+  z-index: 1000;
 `
 
 export class MapNavigation extends Component{
   constructor(props) {
     super(props);
-    this.mapper = React.createRef();
   }
 
-	enterArea(area) {
-    console.log('ENTER AREA', area);
-		this.setState({ hoveredArea: area, msg: `You entered ${area.shape} ${area.name} at coords ${JSON.stringify(area.coords)} !` });
-  }
+  state = {
+    areaCoords: null
+  };
   
-	leaveArea(area) {
-    console.log('LEAVE AREA', area);
-		this.setState({ hoveredArea: null, msg: `You leaved ${area.shape} ${area.name} at coords ${JSON.stringify(area.coords)} !` });
-	}
+  componentDidMount() {
+    if(this.mapper && this.mapper.computeCenter) {
+      const areaCoords = this.props.map.areas.reduce((accum, area) => {
+        accum[area.name] = this.mapper.computeCenter(area);
+        return accum;
+      }, {});
+      this.setState({ areaCoords });
+    }
+  }
 
   render() {
     const { imageSrc, map } = this.props;
 
     return (
-      <>
+      <div style={{ position: 'absolute' }}>
         <ImageMapper 
-          ref={this.mapper}
+          ref={mapper => this.mapper = mapper}
           src={imageSrc} 
           map={map}
-          key="mapper"
-          onMouseEnter={area => this.enterArea(area)}
-          onMouseLeave={area => this.leaveArea(area)} />
+          key="mapper" />
         {
-          console.log('IMAGE MAPPER', this.mapper) ||
-          console.log('IMAGE MAPPER', (this.mapper || {}).computeCenter) ||
-          map.areas.map(area => (
-            <span key={area.name} style={{ backgroundColor: 'yellow', top: `${area.coords[1]}px`, left: `${area.coords[0]}px` }}>{area.name}</span>
-          ))
+          this.mapper && 
+          this.state.areaCoords &&
+          map.areas.map(area => {
+            const coords = this.state.areaCoords[area.name];
+            return (
+              <AreaTag key={area.name} style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}>{area.name}</AreaTag>
+            );
+          })
         }
-      </>
+      </div>
     )
   }
 }
