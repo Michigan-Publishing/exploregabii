@@ -45,6 +45,7 @@
     "react-easy-chart": "^1.0.0",
     "react-flyout-menu": "^1.0.9",
     "react-helmet": "^5.2.0",
+    "react-image-mapper": "https://github.com/BlackMuttMedia/react-image-mapper#feature/areaAltTags",
     "react-spring": "^6.1.5",
     "react-tabs": "^2.3.0",
     "react-whirl": "^1.1.3",
