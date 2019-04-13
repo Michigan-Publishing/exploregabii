@@ -1,13 +1,21 @@
 import { Link } from "gatsby"
-import React from "react"
-import styled from "styled-components"
+import React, { Fragment } from "react"
+import styled, { css } from "styled-components"
 
-import { Fragment } from "../../../public/admin/cms"
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
+import Heading from "../Heading"
 
-const ColumnWrapper = styled.div`
+const LinkContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  line-height: 1.4rem;
+
+  & a {
+    color: ${({ theme }) => theme.colors.brandColor};
+  }
+
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     flex-direction: column;
   }
@@ -17,11 +25,19 @@ const Column = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
-  width: 32%;
+  min-width: 10rem;
+
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
+    min-width: unset;
     font-size: 1rem;
     width: 100%;
+    margin-bottom: 1rem;
   }
+`
+
+const ChildLink = styled(Link)`
+  margin-left: 0.4rem;
+  line-height: 1.6rem;
 `
 
 function getLinkColumn(link) {
@@ -30,24 +46,37 @@ function getLinkColumn(link) {
       <Link to={link.slug}>
         <strong>{link.title}</strong>
       </Link>
-      {link.children.map(childLink => (
-        <ChildLink key={childLink.slug} to={childLink.slug}>
-          {childLink.title}
-        </ChildLink>
-      ))}
+      {link.children &&
+        link.children.map(childLink => (
+          <ChildLink key={childLink.slug} to={childLink.slug}>
+            {childLink.title}
+          </ChildLink>
+        ))}
     </Fragment>
   )
 }
 
 function Footer({ links }) {
-  return <strong>Footer</strong>
-  {
-    links
-      .sort((a, b) => {
-        return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
-      })
-      .map(link => <Column key={link.slug}>{this.getLinkColumn(link)}</Column>)
+  if (!links) {
+    return null
   }
+
+  return (
+    <>
+      <Heading level="2" mb="1rem">
+        Explore Gabii
+      </Heading>
+      <LinkContainer>
+        {links
+          .sort((a, b) => {
+            return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
+          })
+          .map(link => (
+            <Column key={link.slug}>{getLinkColumn(link, Link)}</Column>
+          ))}
+      </LinkContainer>
+    </>
+  )
 }
 
 export default Footer
