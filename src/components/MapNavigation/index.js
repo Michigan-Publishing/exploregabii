@@ -1,1 +1,1 @@
-export { MapNavigation } from './MapNavigation';
+export { default } from './MapNavigation';

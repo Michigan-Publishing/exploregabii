@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import React from 'react';
 import { escapeWithRegexp, unescapeWithRegexp } from '../../../utils/escape';
-import { MapNavigation } from '../../../components/MapNavigation';
+import MapNavigation from '../../../components/MapNavigation';
 
 export default {
   id: "mapNavigation",
@@ -43,6 +43,7 @@ export default {
   pattern: new RegExp(`:::md-component MapNavigation name="(.*?)" imageSrc="(.*?)" map="(.*)"`),
   fromBlock: function(match) {
     const map = JSON.parse(unescapeWithRegexp(match[3]));
+    console.log('MAP', map); 
     return {
       name: unescapeWithRegexp(match[1]),
       imageSrc: unescapeWithRegexp(match[2]),
@@ -54,6 +55,7 @@ export default {
       ` map="${escapeWithRegexp(JSON.stringify(obj.map))}"`;
   },
   toPreview: function(obj) {
-    return <MapNavigation name={obj.name} imageSrc={obj.imageSrc} map={JSON.stringify(obj.map.toJS())} />
+    return <MapNavigation name={obj.name} imageSrc={obj.imageSrc} 
+      map={escapeWithRegexp(JSON.stringify(obj.map.toJS()))} />
   }
 };
