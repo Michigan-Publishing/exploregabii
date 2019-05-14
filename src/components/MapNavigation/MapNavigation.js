@@ -24,7 +24,8 @@ export class MapNavigation extends Component{
   
   componentDidMount() {
     if(this.mapper && this.mapper.computeCenter) {
-      const areaCoords = this.props.map.areas.reduce((accum, area) => {
+      const areaCoords = JSON.parse(this.props.map).areas.reduce((accum, area) => {
+        area.coords = JSON.parse(area.coords);
         accum[area.name] = this.mapper.computeCenter(area);
         return accum;
       }, {});
@@ -33,7 +34,13 @@ export class MapNavigation extends Component{
   }
 
   render() {
-    const { imageSrc, map } = this.props;
+    const { imageSrc, map: mapString } = this.props;
+    var map = JSON.parse(mapString);
+    if(map && Array.isArray(map.areas)) {
+      map.areas.forEach(area => {
+        area.coords = JSON.parse(area.coords);
+      });
+    }
 
     return (
       <div style={{ position: 'absolute' }}>
@@ -42,16 +49,16 @@ export class MapNavigation extends Component{
           src={imageSrc} 
           map={map}
           key="mapper" />
-        {
-          this.mapper && 
-          this.state.areaCoords &&
-          map.areas.map(area => {
-            const coords = this.state.areaCoords[area.name];
-            return (
-              <AreaTag key={area.name} style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}>{area.name}</AreaTag>
-            );
-          })
-        }
+          {
+            this.mapper && 
+            this.state.areaCoords &&
+            map.areas.map(area => {
+              const coords = this.state.areaCoords[area.name];
+              return (
+                <AreaTag key={area.name} style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}>{area.name}</AreaTag>
+              );
+            })
+          }
       </div>
     )
   }
