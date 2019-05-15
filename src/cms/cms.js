@@ -1,7 +1,6 @@
 import CMS from "netlify-cms"
 import {
-  FulcrumAudio,
-  FulcrumImage,
-  FulcrumText,
-  FulcrumVideo,
+  MapNavigation,
 } from "./editorComponents"
+
+CMS.registerEditorComponent(MapNavigation);

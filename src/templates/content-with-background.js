@@ -14,6 +14,7 @@ import RelatedContent from "../components/relatedContent"
 import Breakpoints from "../components/breakpoints"
 import { FulcrumImageVideo, FulcrumTextAudio } from "../components/fulcrum"
 import AboutTheAuthor from "../components/aboutTheAuthor"
+import MapNavigation from "../components/MapNavigation"
 
 // eslint-disable-next-line
 import styles from "../styles/global.css"
@@ -100,6 +101,7 @@ class ContentPages extends Component {
       FulcrumImageVideo,
       FulcrumTextAudio,
       AboutTheAuthor,
+      MapNavigation,
     }
     const newScope = { ...this.props.scope, ...contextComponents }
     const newProps = { ...{ ...this.props, ...{ scope: newScope } } }

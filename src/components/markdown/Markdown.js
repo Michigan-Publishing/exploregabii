@@ -2,6 +2,7 @@ import React from "react"
 import marksy from "marksy/components"
 import { FulcrumImageVideo, FulcrumTextAudio } from "../fulcrum"
 import AboutTheAuthor from "../aboutTheAuthor"
+import MapNavigation from "../MapNavigation"
 
 const compile = marksy({
   createElement: React.createElement,
@@ -9,6 +10,7 @@ const compile = marksy({
     FulcrumImageVideo,
     FulcrumTextAudio,
     AboutTheAuthor,
+    MapNavigation,
   },
 })
 

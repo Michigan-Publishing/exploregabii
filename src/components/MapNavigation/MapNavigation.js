@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react"
 import styled from "styled-components"
 import ImageMapper from 'react-image-mapper';
+import { unescapeWithRegexp } from '../../utils/escape';
 
 const AreaTag = styled.span`
   position: absolute;
@@ -13,7 +14,7 @@ const AreaTag = styled.span`
   z-index: 1000;
 `
 
-export class MapNavigation extends Component{
+export default class MapNavigation extends Component{
   constructor(props) {
     super(props);
   }
@@ -24,7 +25,8 @@ export class MapNavigation extends Component{
   
   componentDidMount() {
     if(this.mapper && this.mapper.computeCenter) {
-      const areaCoords = this.props.map.areas.reduce((accum, area) => {
+      const areaCoords = JSON.parse(unescapeWithRegexp(this.props.map)).areas.reduce((accum, area) => {
+        area.coords = JSON.parse(area.coords);
         accum[area.name] = this.mapper.computeCenter(area);
         return accum;
       }, {});
@@ -33,7 +35,21 @@ export class MapNavigation extends Component{
   }
 
   render() {
-    const { imageSrc, map } = this.props;
+    const { imageSrc, map: mapString } = this.props;
+    console.log('PROPS', this.props);
+    var map = '';
+    try{
+      map = JSON.parse(unescapeWithRegexp(mapString));
+    } 
+    catch(ex) {
+      console.log('EXCEPTION!', ex);
+    }
+    console.log('MAP!', map);
+    if(map && Array.isArray(map.areas)) {
+      map.areas.forEach(area => {
+        area.coords = JSON.parse(area.coords);
+      });
+    }
 
     return (
       <div style={{ position: 'absolute' }}>
@@ -42,16 +58,16 @@ export class MapNavigation extends Component{
           src={imageSrc} 
           map={map}
           key="mapper" />
-        {
-          this.mapper && 
-          this.state.areaCoords &&
-          map.areas.map(area => {
-            const coords = this.state.areaCoords[area.name];
-            return (
-              <AreaTag key={area.name} style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}>{area.name}</AreaTag>
-            );
-          })
-        }
+          {
+            this.mapper && 
+            this.state.areaCoords &&
+            map.areas.map(area => {
+              const coords = this.state.areaCoords[area.name];
+              return (
+                <AreaTag key={area.name} style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}>{area.name}</AreaTag>
+              );
+            })
+          }
       </div>
     )
   }
