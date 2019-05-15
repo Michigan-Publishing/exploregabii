@@ -36,15 +36,7 @@ export default class MapNavigation extends Component{
 
   render() {
     const { imageSrc, map: mapString } = this.props;
-    console.log('PROPS', this.props);
-    var map = '';
-    try{
-      map = JSON.parse(unescapeWithRegexp(mapString));
-    } 
-    catch(ex) {
-      console.log('EXCEPTION!', ex);
-    }
-    console.log('MAP!', map);
+    const map = JSON.parse(unescapeWithRegexp(mapString));
     if(map && Array.isArray(map.areas)) {
       map.areas.forEach(area => {
         area.coords = JSON.parse(area.coords);
