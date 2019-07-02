@@ -5,6 +5,10 @@ import styled, { css } from "styled-components"
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 import Heading from "../Heading"
 
+const FooterWrapper = styled.div`
+  padding: 24px;
+`
+
 const LinkContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -62,7 +66,7 @@ function Footer({ links }) {
   }
 
   return (
-    <>
+    <FooterWrapper>
       <Heading level="2" mb="1rem">
         Explore Gabii
       </Heading>
@@ -75,7 +79,7 @@ function Footer({ links }) {
             <Column key={link.slug}>{getLinkColumn(link, Link)}</Column>
           ))}
       </LinkContainer>
-    </>
+    </FooterWrapper>
   )
 }
 

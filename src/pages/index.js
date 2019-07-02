@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "../components/Layout"
+import IllustratedMap from "../components/IllustratedMap"
 
 const links = [
   {
@@ -29,6 +30,8 @@ const links = [
 ]
 export default () => (
   <Layout footerLinks={links}>
-    <Layout.Content>This is a test currently.</Layout.Content>
+    <Layout.Content>
+      <IllustratedMap />
+    </Layout.Content>
   </Layout>
 )
