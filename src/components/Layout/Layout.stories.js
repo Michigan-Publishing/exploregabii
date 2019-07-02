@@ -1,5 +1,11 @@
 import React from "react"
-import Layout from "../components/Layout"
+
+import { storiesOf } from "@storybook/react"
+import { action } from "@storybook/addon-actions"
+import { linkTo } from "@storybook/addon-links"
+import { select } from "@storybook/addon-knobs"
+
+import Layout from "./Layout"
 
 const links = [
   {
@@ -27,8 +33,7 @@ const links = [
     ],
   },
 ]
-export default () => (
-  <Layout footerLinks={links}>
-    <Layout.Content>This is a test currently.</Layout.Content>
-  </Layout>
-)
+
+storiesOf("Layout", module).add("default", () => {
+  return <Layout footerLinks={links} />
+})

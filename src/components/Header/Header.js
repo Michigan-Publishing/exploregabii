@@ -5,6 +5,7 @@ import Logo from "../logo"
 import { Text } from "../text/Text"
 
 const HeaderContainer = styled(Flex)`
+  padding: 10px 0;
   background-color: ${({ theme }) => theme.colors.white};
   color: ${({ theme }) => theme.colors.brandColor};
   height: 200px;
