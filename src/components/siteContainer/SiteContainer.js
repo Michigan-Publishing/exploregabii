@@ -10,6 +10,7 @@ import Footer, { FOOTER_HEIGHT } from "../footer"
 import { buildFrontmatterLookup } from "../../utils/node"
 import palette from "../../utils/palette"
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
+import { theme, Provider } from "../../constants/theme"
 
 const HeadingWrapper = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 1.5) 50%, rgba(0, 0, 0, 0));
@@ -130,33 +131,35 @@ export default class extends Component {
     const linkTree = this.buildLinkTree()
 
     return (
-      <MenuProvider
-        onClose={() => {
-          this.setState({ showFlyout: false })
-          document.body.classList.remove("modalOpen")
-        }}
-      >
-        <Layout>
-          <Fragment>
-            <HeadingWrapper
-              ref={headingWrapper => (this.headingWrapper = headingWrapper)}
-              id="heading-wrapper"
-            >
-              <HeadingRow>
-                <Breadcrumbs items={this.buildBreadcrumbLinks()} />
-              </HeadingRow>
-            </HeadingWrapper>
+      <Provider theme={theme}>
+        <MenuProvider
+          onClose={() => {
+            this.setState({ showFlyout: false })
+            document.body.classList.remove("modalOpen")
+          }}
+        >
+          <Layout>
+            <Fragment>
+              <HeadingWrapper
+                ref={headingWrapper => (this.headingWrapper = headingWrapper)}
+                id="heading-wrapper"
+              >
+                <HeadingRow>
+                  <Breadcrumbs items={this.buildBreadcrumbLinks()} />
+                </HeadingRow>
+              </HeadingWrapper>
 
-            <Background>
-              <FlyoutMenu isVisible={this.state.showFlyout} items={linkTree} />
-              <ContentArea style={contentStyles} id="content-area-wrapper">
-                {this.props.children}
-              </ContentArea>
-              <Footer links={linkTree} />
-            </Background>
-          </Fragment>
-        </Layout>
-      </MenuProvider>
+              <Background>
+                <FlyoutMenu isVisible={this.state.showFlyout} items={linkTree} />
+                <ContentArea style={contentStyles} id="content-area-wrapper">
+                  {this.props.children}
+                </ContentArea>
+                <Footer links={linkTree} />
+              </Background>
+            </Fragment>
+          </Layout>
+        </MenuProvider>
+      </Provider>
     )
   }
 }
