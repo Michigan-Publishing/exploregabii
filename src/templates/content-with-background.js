@@ -5,6 +5,7 @@ import MDXRenderer from "gatsby-mdx/mdx-renderer"
 import { withMDXScope } from "gatsby-mdx/context"
 import { Helmet } from "react-helmet"
 
+import { ContentPage } from "../components/ContentPage"
 import ContentArea from "../components/contentArea"
 import Navigation from "../components/secondaryNavigation"
 import SiteContainer from "../components/siteContainer"
@@ -76,7 +77,7 @@ function hasContent(data) {
   return data.post.wordCount.words || getBodyContent(data) != ""
 }
 
-class ContentPages extends Component {
+class ContentWithBackground extends Component {
   constructor(props) {
     super(props)
     this.state = { headerOffset: 0 }
@@ -94,7 +95,7 @@ class ContentPages extends Component {
 
   render() {
     const {
-      pageContext: { title },
+      pageContext: { title, backgroundImage },
       data,
     } = this.props
     const contextComponents = {
@@ -122,7 +123,7 @@ class ContentPages extends Component {
             <h1>{title}</h1>
           </VisuallyHidden>
           {hasContent(data) && (
-            <ContentArea>
+            <ContentPage imageSrc={backgroundImage}>
               <h1>{title}</h1>
               {useMarkdownInsteadOfMDX ? (
                 <Markdown>{getBodyContent(data)}</Markdown>
@@ -136,7 +137,7 @@ class ContentPages extends Component {
                 />
               )}
               <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
-            </ContentArea>
+            </ContentPage>
           )}
           {shouldShowRelatedContent(data) && (
             <RelatedContent relatedLinks={mapSiblingContent(data)} />
@@ -152,7 +153,7 @@ class ContentPages extends Component {
   }
 }
 
-export default withMDXScope(ContentPages)
+export default withMDXScope(ContentWithBackground)
 
 export const pageQuery = graphql`
   query($id: String!, $key: String!, $parentKey: String) {

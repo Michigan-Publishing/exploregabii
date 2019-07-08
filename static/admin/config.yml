@@ -15,13 +15,15 @@ collections:
     format: frontmatter
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {
-          label: "Template Key",
-          name: "templateKey",
-          widget: "hidden",
-          default: "content-pages",
-        }
+      - label: "Template"
+        name: "templateKey"
+        widget: "select"
+        default: "content-pages"
+        options: 
+          - { label: "Content Page", value: "content-pages" }
+          - { label: "Content Page With Background", value: "content-with-background" }
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Background Image", name: "backgroundImage", widget: "image" }
       - { label: "Key", name: "key", widget: "string" }
       - label: "Parent Key"
         name: "parentKey"

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Background from "../background"
 import SiteHeading from "../siteHeading"
 import Breadcrumbs from "../breadcrumbs"
+import Layout from "../Layout";
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
 import FlyoutMenu from "../flyoutMenu"
 import Footer, { FOOTER_HEIGHT } from "../footer"
@@ -106,11 +107,13 @@ export default class extends Component {
       let currentKey = key
       let list = []
       while (currentKey) {
-        const data = lookup[currentKey]
-        list.push({
-          title: data.title,
-          slug: data.slug,
-        })
+        const data = lookup[currentKey] || {};
+        if(data && data.title && data.slug) {
+          list.push({
+            title: data.title,
+            slug: data.slug,
+          })
+        }
         currentKey = data.parentKey
       }
 
@@ -135,42 +138,26 @@ export default class extends Component {
             document.body.classList.remove("modalOpen")
           }}
         >
-          <Fragment>
-            <HeadingWrapper
-              ref={headingWrapper => (this.headingWrapper = headingWrapper)}
-              id="heading-wrapper"
-            >
-              <HeadingRow>
-                <SiteHeading />
-                {
-                  <MenuConsumer>
-                    {({ closeElement, setToggleElement }) => (
-                      <span style={{ fontSize: "1.5rem" }}>
-                        <HamburgerButton
-                          setToggleElement={setToggleElement}
-                          closeElement={closeElement}
-                          onClick={() => {
-                            document.body.classList.add("modalOpen")
-                          }}
-                        />
-                      </span>
-                    )}
-                  </MenuConsumer>
-                }
-              </HeadingRow>
-              <HeadingRow>
-                <Breadcrumbs items={this.buildBreadcrumbLinks()} />
-              </HeadingRow>
-            </HeadingWrapper>
+          <Layout>
+            <Fragment>
+              <HeadingWrapper
+                ref={headingWrapper => (this.headingWrapper = headingWrapper)}
+                id="heading-wrapper"
+              >
+                <HeadingRow>
+                  <Breadcrumbs items={this.buildBreadcrumbLinks()} />
+                </HeadingRow>
+              </HeadingWrapper>
 
-            <Background>
-              <FlyoutMenu isVisible={this.state.showFlyout} items={linkTree} />
-              <ContentArea style={contentStyles} id="content-area-wrapper">
-                {this.props.children}
-              </ContentArea>
-              <Footer links={linkTree} />
-            </Background>
-          </Fragment>
+              <Background>
+                <FlyoutMenu isVisible={this.state.showFlyout} items={linkTree} />
+                <ContentArea style={contentStyles} id="content-area-wrapper">
+                  {this.props.children}
+                </ContentArea>
+                <Footer links={linkTree} />
+              </Background>
+            </Fragment>
+          </Layout>
         </MenuProvider>
       </Provider>
     )
