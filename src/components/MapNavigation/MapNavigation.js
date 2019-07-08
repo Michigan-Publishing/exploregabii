@@ -51,11 +51,13 @@ export default class MapNavigation extends Component{
 
     return (
       <div style={{ position: 'absolute' }}>
-        <ImageMapper 
-          ref={mapper => this.mapper = mapper}
-          src={imageSrc} 
-          map={map}
-          key="mapper" />
+        {imageSrc && 
+          <ImageMapper 
+            ref={mapper => this.mapper = mapper}
+            src={imageSrc} 
+            map={map}
+            key="mapper" />
+          }
           {
             this.mapper && 
             this.state.areaCoords &&
