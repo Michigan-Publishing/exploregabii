@@ -48,6 +48,11 @@ export default class MapNavigation extends Component{
         area.coords = JSON.parse(area.coords);
       });
     }
+    else {
+      map.areas = [];
+    }
+
+    console.log('MAP', map);
 
     return (
       <div style={{ position: 'absolute' }}>
