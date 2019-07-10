@@ -4,12 +4,16 @@ import { theme, Provider } from "../../constants/theme"
 
 import Header from "../Header"
 import Footer from "../Footer"
+import src from "../../pages/background.png"
 
 const LayoutWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   min-height: 100vh;
+  background: url(${src});
+  background-repeat: no-repeat;
+  background-size: cover;
 `
 const Body = styled.div`
   display: flex;
