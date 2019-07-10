@@ -1,6 +1,14 @@
 import React from "react"
 import Layout from "../components/Layout"
-import IllustratedMap from "../components/IllustratedMap"
+import MapNavigation from "../components/MapNavigation"
+import imageSrc from "./quadrant_map.png"
+import { escapeWithRegexp } from "../utils/escape"
+import styled from "styled-components"
+
+const NavigationWrapper = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.brandColor};
+  padding: 2px;
+`
 
 const links = [
   {
@@ -28,10 +36,53 @@ const links = [
     ],
   },
 ]
+
+const areas = [
+  {
+    shape: "rect",
+    href: "/?path=/story/contentpage--default",
+    coords: "[ 0, 0, 496, 435 ]",
+    name: "Previous Explorations",
+    alt: "Visit previous explorations",
+  },
+  {
+    shape: "rect",
+    href: "/?path=/story/contentpage--default",
+    coords: "[ 502, 0, 907, 390 ]",
+    name: "Current Excavations",
+    alt: "Visit current excavations",
+  },
+  {
+    shape: "rect",
+    href: "/?path=/story/contentpage--default",
+    coords: "[ 0, 443, 502, 670 ]",
+    name: "Introduction to the Gabii Project",
+    alt: "Visit an introduction to the Gabii project",
+  },
+  {
+    shape: "rect",
+    href: "/?path=/story/contentpage--default",
+
+    coords: "[ 502, 390, 907, 670 ]",
+    name: "The Environment of Gabii",
+    alt: "This is the alt",
+  },
+]
+
+var MAP = {
+  name: "Gabii Navigation",
+  areas,
+}
+
 export default () => (
   <Layout footerLinks={links}>
     <Layout.Content>
-      <IllustratedMap />
+      <NavigationWrapper>
+        <MapNavigation
+          imageSrc={imageSrc}
+          map={escapeWithRegexp(JSON.stringify(MAP))}
+        />
+      </NavigationWrapper>
     </Layout.Content>
   </Layout>
 )
