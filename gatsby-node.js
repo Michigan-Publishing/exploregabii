@@ -109,18 +109,6 @@ buildFrontmatterLookup = nodes => {
           });
       });
 
-      Object.keys(nextNode.frontmatter)
-        .filter((key) => key === 'points')
-        .forEach((key) => {
-          (nextNode.frontmatter[key] || []).forEach((point) => {
-            point.point = point.point == undefined ? point.point : 
-              point.point.replace(new RegExp('\\:\\:\\:md-component (.*)', 'g'), 
-                (match, p1) => {
-                  return match && p1 ? `<${p1} />` : nextNode.frontmatter[key];
-              });
-          });
-        });
-
     return {
       ...all,
       [nextNode.frontmatter.key]: nextNode.frontmatter
