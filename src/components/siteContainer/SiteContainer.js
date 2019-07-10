@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react"
 import styled from "styled-components"
 import Background from "../background"
-import SiteHeading from "../siteHeading"
 import Breadcrumbs from "../breadcrumbs"
 import Layout from "../Layout";
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
@@ -41,10 +40,10 @@ const ContentArea = styled.div`
   flex-grow: 1;
   flex-direction: column;
   height: 100%;
-  margin-top: 8.5rem;
   position: relative;
   z-index: 0;
   padding-bottom: ${FOOTER_HEIGHT}px;
+  max-width: 95%;
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     margin-top: 0;
