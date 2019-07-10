@@ -146,6 +146,21 @@ export default class extends Component {
               >
                 <HeadingRow>
                   <Breadcrumbs items={this.buildBreadcrumbLinks()} />
+                  {
+                    <MenuConsumer>
+                      {({ closeElement, setToggleElement }) => (
+                        <span style={{ fontSize: "1.5rem" }}>
+                          <HamburgerButton
+                            setToggleElement={setToggleElement}
+                            closeElement={closeElement}
+                            onClick={() => {
+                              document.body.classList.add("modalOpen")
+                            }}
+                          />
+                        </span>
+                      )}
+                    </MenuConsumer>
+                  }
                 </HeadingRow>
               </HeadingWrapper>
 
