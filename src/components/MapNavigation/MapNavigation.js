@@ -52,8 +52,6 @@ export default class MapNavigation extends Component{
       map.areas = [];
     }
 
-    console.log('MAP', map);
-
     return (
       <div style={{ position: 'absolute' }}>
         {imageSrc && 
