@@ -5,7 +5,7 @@ import Breadcrumbs from "../breadcrumbs"
 import Layout from "../Layout";
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
 import FlyoutMenu from "../flyoutMenu"
-import Footer, { FOOTER_HEIGHT } from "../footer"
+import Footer, { FOOTER_HEIGHT } from "../Footer"
 import { buildFrontmatterLookup } from "../../utils/node"
 import palette from "../../utils/palette"
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
