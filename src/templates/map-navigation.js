@@ -8,7 +8,6 @@ import { Helmet } from "react-helmet"
 import ContentArea from "../components/contentArea"
 import Navigation from "../components/secondaryNavigation"
 import SiteContainer from "../components/siteContainer"
-import Point from "../components/point"
 import Markdown from "../components/markdown"
 import RelatedContent from "../components/relatedContent"
 import Breakpoints from "../components/breakpoints"
@@ -127,13 +126,6 @@ class ContentPages extends Component {
               ) : (
                 <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>
               )}
-              {data.post.frontmatter && data.post.frontmatter.points && (
-                <Point
-                  points={data.post.frontmatter.points}
-                  headerOffset={this.state.headerOffset}
-                />
-              )}
-              <Markdown>{data.post.frontmatter.afterPoints}</Markdown>
             </ContentArea>
           )}
           {shouldShowRelatedContent(data) && (
@@ -165,11 +157,6 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        afterPoints
-        points {
-          point
-          title
-        }
       }
     }
     childPages: allMdx(filter: { frontmatter: { parentKey: { eq: $key } } }) {
