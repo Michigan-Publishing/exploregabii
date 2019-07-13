@@ -71,7 +71,7 @@ var MAP = {
 
 export default () => (
   <Layout footerLinks={links}>
-    <Layout.Content>
+    <Layout.Content style={{ marginTop: 24, marginBottom: 24 }}>
       <MapNavigation
         imageSrc={imageSrc}
         map={escapeWithRegexp(JSON.stringify(MAP))}

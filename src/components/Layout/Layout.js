@@ -5,6 +5,7 @@ import { theme, Provider } from "../../constants/theme"
 import Header from "../Header"
 import Footer from "../Footer"
 import src from "../../pages/background.png"
+import { LayoutWrapper as OriginalLayoutWrapper } from "../LayoutWrapper"
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -21,11 +22,12 @@ const Body = styled.div`
   flex-shrink: 0;
 `
 
-const Content = styled.div`
-  background-color: ${({ theme }) => theme.colors.trueWhite};
+const Content = styled(OriginalLayoutWrapper)`
+  background-color: ${({ theme }) => theme.colors.trueWhite} !important;
   border: 1px solid ${({ theme }) => theme.colors.darkBlue};
   padding: 20px;
-  margin: 16px;
+
+  background-color: #fab;
 `
 
 function Layout({ footerLinks, children }) {

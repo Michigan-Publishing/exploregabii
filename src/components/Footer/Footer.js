@@ -5,6 +5,8 @@ import styled, { css } from "styled-components"
 import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 import Heading from "../Heading"
 
+import { LayoutWrapper } from "../LayoutWrapper"
+
 const FooterWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBlue};
   padding: 24px;
@@ -68,18 +70,20 @@ function Footer({ links }) {
 
   return (
     <FooterWrapper>
-      <Heading level="2" mb="1rem" color="darkBlue">
-        Explore Gabii
-      </Heading>
-      <LinkContainer>
-        {links
-          .sort((a, b) => {
-            return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
-          })
-          .map(link => (
-            <Column key={link.slug}>{getLinkColumn(link, Link)}</Column>
-          ))}
-      </LinkContainer>
+      <LayoutWrapper>
+        <Heading level="2" mb="1rem" color="darkBlue">
+          Explore Gabii
+        </Heading>
+        <LinkContainer>
+          {links
+            .sort((a, b) => {
+              return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
+            })
+            .map(link => (
+              <Column key={link.slug}>{getLinkColumn(link, Link)}</Column>
+            ))}
+        </LinkContainer>
+      </LayoutWrapper>
     </FooterWrapper>
   )
 }
