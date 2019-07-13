@@ -6,6 +6,7 @@ import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 import Heading from "../Heading"
 
 const FooterWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.lightBlue};
   padding: 24px;
 `
 
@@ -17,7 +18,7 @@ const LinkContainer = styled.div`
   line-height: 1.4rem;
 
   & a {
-    color: ${({ theme }) => theme.colors.brandColor};
+    color: ${({ theme }) => theme.colors.darkBlue};
   }
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
@@ -67,7 +68,7 @@ function Footer({ links }) {
 
   return (
     <FooterWrapper>
-      <Heading level="2" mb="1rem">
+      <Heading level="2" mb="1rem" color="darkBlue">
         Explore Gabii
       </Heading>
       <LinkContainer>

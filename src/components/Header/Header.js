@@ -6,7 +6,8 @@ import { Text } from "../text/Text"
 
 const HeaderContainer = styled(Flex)`
   padding: 10px 0;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.lightBlue};
+  border-bottom: 3px solid ${({ theme }) => theme.colors.darkBlue};
   color: ${({ theme }) => theme.colors.brandColor};
   height: 200px;
 
@@ -26,7 +27,7 @@ function Header({ children }) {
   return (
     <HeaderContainer>
       <Box width={[1, 1 / 2]} style={{ display: "flex", alignItems: "center" }}>
-        <Logo variant="dark" width="auto" height="100%" />
+        <Logo variant="dark" />
         <Text fontSize={3}>Explore Gabii</Text>
       </Box>
       <Box width={[1, 1 / 2]}>{children}</Box>

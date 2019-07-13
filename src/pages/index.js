@@ -5,11 +5,6 @@ import imageSrc from "./quadrant_map.png"
 import { escapeWithRegexp } from "../utils/escape"
 import styled from "styled-components"
 
-const NavigationWrapper = styled.div`
-  border: 1px solid ${({ theme }) => theme.colors.brandColor};
-  padding: 2px;
-`
-
 const links = [
   {
     title: "one",
@@ -77,12 +72,10 @@ var MAP = {
 export default () => (
   <Layout footerLinks={links}>
     <Layout.Content>
-      <NavigationWrapper>
-        <MapNavigation
-          imageSrc={imageSrc}
-          map={escapeWithRegexp(JSON.stringify(MAP))}
-        />
-      </NavigationWrapper>
+      <MapNavigation
+        imageSrc={imageSrc}
+        map={escapeWithRegexp(JSON.stringify(MAP))}
+      />
     </Layout.Content>
   </Layout>
 )

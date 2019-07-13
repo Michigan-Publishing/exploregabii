@@ -3,8 +3,11 @@ import { createGlobalStyle, ThemeProvider } from "styled-components"
 require("typeface-lato")
 
 const colors = {
+  lightBlue: "#E0E9F0",
+  darkBlue: "#245F86",
   brandColor: "#1b2f43",
   accentColor: "#b7c7d9",
+  trueWhite: "#FFF",
   white: "#f0f4f5",
   light1: "#45586e",
   light2: "#e9faff",
@@ -20,6 +23,10 @@ const fonts = {
   heading: '"Lato", Helvetica, sans-serif',
   sans: "Helvetica, Arial, sans-serif",
   serif: '"adobe-garamond-pro", Georgia, serif',
+}
+
+const settings = {
+  width: 1024,
 }
 
 const fontSizes = [12, 14, 16, 24, 32, 48, 64, 96, 128]
@@ -46,4 +53,5 @@ export const theme = {
   colors,
   fonts,
   fontSizes,
+  settings,
 }

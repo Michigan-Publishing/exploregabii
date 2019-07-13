@@ -22,7 +22,10 @@ const Body = styled.div`
 `
 
 const Content = styled.div`
+  background-color: ${({ theme }) => theme.colors.trueWhite};
+  border: 1px solid ${({ theme }) => theme.colors.darkBlue};
   padding: 20px;
+  margin: 16px;
 `
 
 function Layout({ footerLinks, children }) {
