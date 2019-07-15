@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react"
 import styled from "styled-components"
 import Background from "../background"
 import Breadcrumbs from "../breadcrumbs"
-import Layout from "../Layout";
+import Layout from "../Layout"
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
 import FlyoutMenu from "../flyoutMenu"
 import Footer, { FOOTER_HEIGHT } from "../Footer"
@@ -36,6 +36,7 @@ const HeadingWrapper = styled.div`
 `
 
 const ContentArea = styled.div`
+  border: 3px solid #bad !important;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -106,8 +107,8 @@ export default class extends Component {
       let currentKey = key
       let list = []
       while (currentKey) {
-        const data = lookup[currentKey] || {};
-        if(data && data.title && data.slug) {
+        const data = lookup[currentKey] || {}
+        if (data && data.title && data.slug) {
           list.push({
             title: data.title,
             slug: data.slug,
@@ -164,7 +165,10 @@ export default class extends Component {
               </HeadingWrapper>
 
               <Background>
-                <FlyoutMenu isVisible={this.state.showFlyout} items={linkTree} />
+                <FlyoutMenu
+                  isVisible={this.state.showFlyout}
+                  items={linkTree}
+                />
                 <ContentArea style={contentStyles} id="content-area-wrapper">
                   {this.props.children}
                 </ContentArea>
