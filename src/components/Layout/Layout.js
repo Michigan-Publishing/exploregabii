@@ -17,6 +17,10 @@ const LayoutWrapper = styled.div`
   background: url(${src});
   background-repeat: no-repeat;
   background-size: cover;
+
+  & #main-menu path {
+    fill: ${({ theme }) => theme.colors.darkBlue} !important;
+  }
 `
 
 const Body = styled.div`
@@ -45,20 +49,23 @@ function Layout({ footerLinks, children }) {
     >
       <Provider theme={theme}>
         <LayoutWrapper>
-          <Header />
-          <MenuConsumer>
-            {({ closeElement, setToggleElement }) => (
-              <span style={{ fontSize: "1.5rem" }}>
-                <HamburgerButton
-                  setToggleElement={setToggleElement}
-                  closeElement={closeElement}
-                  onClick={() => {
-                    document.body.classList.add("modalOpen")
-                  }}
-                />
-              </span>
-            )}
-          </MenuConsumer>
+          <Header>
+            <>
+              <MenuConsumer>
+                {({ closeElement, setToggleElement }) => (
+                  <span style={{ fontSize: "1.5rem" }}>
+                    <HamburgerButton
+                      setToggleElement={setToggleElement}
+                      closeElement={closeElement}
+                      onClick={() => {
+                        document.body.classList.add("modalOpen")
+                      }}
+                    />
+                  </span>
+                )}
+              </MenuConsumer>
+            </>
+          </Header>
           <Body>{children}</Body>
           <Footer links={footerLinks} />
           <FlyoutMenu isVisible={showFlyout} items={[]} />

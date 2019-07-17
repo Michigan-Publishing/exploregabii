@@ -7,8 +7,7 @@ import { Backdrop, Menu, MenuConsumer } from "react-flyout-menu"
 const GlobalStyle = createGlobalStyle`
   #main-menu {
     background-color: ${props => props.theme.colors.darkBlue};
-    position: absolute;
-    z-index:1001;
+    z-index: 1001;
   }
 `
 

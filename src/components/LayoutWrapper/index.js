@@ -11,6 +11,8 @@ const Container = styled.div`
 const Content = styled.div`
   width: 1024px;
   max-width: 1024px;
+  display: flex;
+  flex-direction: row;
 `
 
 export function LayoutWrapper({ children, className, style }) {

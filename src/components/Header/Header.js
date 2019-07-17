@@ -10,12 +10,12 @@ const HeaderContainer = styled(Flex)`
   background-color: ${({ theme }) => theme.colors.lightBlue};
   border-bottom: 3px solid ${({ theme }) => theme.colors.darkBlue};
   color: ${({ theme }) => theme.colors.brandColor};
-  height: 120px;
+  min-height: 120px;
 
   ${Box}:nth-child(2) {
     text-align: right;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
     align-items: center;
   }
 
@@ -33,9 +33,10 @@ function Header({ children }) {
           style={{ display: "flex", alignItems: "center" }}
         >
           <Logo variant="dark" />
-          <Text fontSize={3}>Explore Gabii</Text>
         </Box>
-        <Box width={[1, 1 / 2]}>{children}</Box>
+        <Box width={[1, 1 / 2]} alignItems="flex-end">
+          {children}
+        </Box>
       </LayoutWrapper>
     </HeaderContainer>
   )
