@@ -1,15 +1,21 @@
 import React, { Component, Fragment } from "react"
-import styled from "styled-components"
+import styled, { createGlobalStyle } from "styled-components"
 import { Link } from "gatsby"
-
 import palette from "../../utils/palette"
 import { Backdrop, Menu, MenuConsumer } from "react-flyout-menu"
+
+const GlobalStyle = createGlobalStyle`
+  #main-menu {
+    background-color: ${props => props.theme.colors.darkBlue};
+    z-index: 1001;
+  }
+`
 
 const Heading = styled.h2`
   display: flex;
   width: 100%;
   text-align: center;
-  color: ${palette.yellow};
+  color: ${palette.white};
   justify-content: center;
 `
 
@@ -80,6 +86,7 @@ export default class extends Component {
         {({ toggleElement, setCloseElement }) => {
           return (
             <Fragment>
+              <GlobalStyle />
               <Menu
                 setCloseElement={setCloseElement}
                 toggleElement={toggleElement}

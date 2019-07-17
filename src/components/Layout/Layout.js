@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
-import { theme, Provider } from "../../constants/theme"
+import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
 
+import { theme, Provider } from "../../constants/theme"
 import Header from "../Header"
 import Footer from "../Footer"
+import FlyoutMenu from "../flyoutMenu"
 import src from "../../pages/background.png"
 import { LayoutWrapper as OriginalLayoutWrapper } from "../LayoutWrapper"
 
@@ -15,7 +17,12 @@ const LayoutWrapper = styled.div`
   background: url(${src});
   background-repeat: no-repeat;
   background-size: cover;
+
+  & #main-menu path {
+    fill: ${({ theme }) => theme.colors.darkBlue} !important;
+  }
 `
+
 const Body = styled.div`
   display: flex;
   flex-grow: 1;
@@ -31,14 +38,40 @@ const Content = styled(OriginalLayoutWrapper)`
 `
 
 function Layout({ footerLinks, children }) {
+  const [showFlyout, setShowFlyout] = useState(false)
+
   return (
-    <Provider theme={theme}>
-      <LayoutWrapper>
-        <Header />
-        <Body>{children}</Body>
-        <Footer links={footerLinks} />
-      </LayoutWrapper>
-    </Provider>
+    <MenuProvider
+      onClose={() => {
+        setShowFlyout(false)
+        document.body.classList.remove("modalOpen")
+      }}
+    >
+      <Provider theme={theme}>
+        <LayoutWrapper>
+          <Header>
+            <>
+              <MenuConsumer>
+                {({ closeElement, setToggleElement }) => (
+                  <span style={{ fontSize: "1.5rem" }}>
+                    <HamburgerButton
+                      setToggleElement={setToggleElement}
+                      closeElement={closeElement}
+                      onClick={() => {
+                        document.body.classList.add("modalOpen")
+                      }}
+                    />
+                  </span>
+                )}
+              </MenuConsumer>
+            </>
+          </Header>
+          <Body>{children}</Body>
+          <Footer links={footerLinks} />
+          <FlyoutMenu isVisible={showFlyout} items={[]} />
+        </LayoutWrapper>
+      </Provider>
+    </MenuProvider>
   )
 }
 
