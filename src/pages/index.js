@@ -73,6 +73,8 @@ export default () => (
   <Layout footerLinks={links}>
     <Layout.Content style={{ marginTop: 24, marginBottom: 24 }}>
       <MapNavigation
+        ml="auto"
+        mr="auto"
         imageSrc={imageSrc}
         map={escapeWithRegexp(JSON.stringify(MAP))}
       />

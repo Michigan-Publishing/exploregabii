@@ -2,6 +2,7 @@ import React, { Component, useState } from "react"
 import styled from "styled-components"
 import ImageMapper from "react-image-mapper"
 import { unescapeWithRegexp } from "../../utils/escape"
+import { Box } from "rebass"
 
 const AreaTag = styled.span`
   position: absolute;
@@ -52,30 +53,32 @@ export default class MapNavigation extends Component {
     }
 
     return (
-      <div style={{ position: "relative" }}>
-        {imageSrc && (
-          <ImageMapper
-            ref={mapper => (this.mapper = mapper)}
-            src={imageSrc}
-            map={map}
-            alt={alt}
-            key="mapper"
-          />
-        )}
-        {this.mapper &&
-          this.state.areaCoords &&
-          map.areas.map(area => {
-            const coords = this.state.areaCoords[area.name]
-            return (
-              <AreaTag
-                key={area.name}
-                style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}
-              >
-                {area.name}
-              </AreaTag>
-            )
-          })}
-      </div>
+      <Box {...this.props}>
+        <div style={{ position: "relative" }}>
+          {imageSrc && (
+            <ImageMapper
+              ref={mapper => (this.mapper = mapper)}
+              src={imageSrc}
+              map={map}
+              alt={alt}
+              key="mapper"
+            />
+          )}
+          {this.mapper &&
+            this.state.areaCoords &&
+            map.areas.map(area => {
+              const coords = this.state.areaCoords[area.name]
+              return (
+                <AreaTag
+                  key={area.name}
+                  style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}
+                >
+                  {area.name}
+                </AreaTag>
+              )
+            })}
+        </div>
+      </Box>
     )
   }
 }
