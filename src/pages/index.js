@@ -35,7 +35,7 @@ const links = [
 const areas = [
   {
     shape: "rect",
-    href: "/?path=/story/contentpage--default",
+    href: "/previous-explorations",
     coords: "[ 0, 0, 496, 435 ]",
     name: "Previous Explorations",
     alt: "Visit previous explorations",
@@ -71,7 +71,7 @@ var MAP = {
 
 export default () => (
   <Layout footerLinks={links}>
-    <Layout.Content style={{ marginTop: 24, marginBottom: 24 }}>
+    <Layout.Content my={24} p={20}>
       <MapNavigation
         ml="auto"
         mr="auto"

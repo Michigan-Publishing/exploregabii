@@ -21,11 +21,16 @@ const Content = styled(Box)`
   height: fit-content;
 `
 
-export function LayoutWrapper({ children, className, style, ...props }) {
-  console.log("PROPS", props)
+export function LayoutWrapper({
+  children,
+  className,
+  style,
+  contentStyle,
+  ...props
+}) {
   return (
     <Container style={style}>
-      <Content className={className} {...props}>
+      <Content className={className} {...props} style={contentStyle}>
         {children}
       </Content>
     </Container>

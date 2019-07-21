@@ -32,7 +32,6 @@ const Body = styled.div`
 const Content = styled(OriginalLayoutWrapper)`
   background-color: ${({ theme }) => theme.colors.trueWhite};
   border: 1px solid ${({ theme }) => theme.colors.darkBlue};
-  padding: 20px;
 `
 
 function Layout({ footerLinks, children, ...props }) {
