@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react"
 import styled from "styled-components"
-import ImageMapper from "react-image-mapper"
+import ImageMapper from "./ImageMapper"
 import { unescapeWithRegexp } from "../../utils/escape"
 import { Box } from "rebass"
 
@@ -66,11 +66,13 @@ export default class MapNavigation extends Component {
           )}
           {this.mapper &&
             this.state.areaCoords &&
+            !this.props.hideTag &&
             map.areas.map(area => {
               const coords = this.state.areaCoords[area.name]
               return (
                 <AreaTag
                   key={area.name}
+                  alt={area.name}
                   style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}
                 >
                   {area.name}

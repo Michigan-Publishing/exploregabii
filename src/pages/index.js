@@ -60,7 +60,7 @@ const areas = [
 
     coords: "[ 502, 390, 907, 670 ]",
     name: "The Environment of Gabii",
-    alt: "This is the alt",
+    alt: "Visit the environment of Gabii",
   },
 ]
 
