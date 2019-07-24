@@ -32,7 +32,9 @@ function Header({ children }) {
           width={[1, 1 / 2]}
           style={{ display: "flex", alignItems: "center" }}
         >
-          <Logo variant="dark" />
+          <a href="/">
+            <Logo variant="dark" alt="Explore Gabii Home" />
+          </a>
         </Box>
         <Box width={[1, 1 / 2]} alignItems="flex-end">
           {children}
