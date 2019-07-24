@@ -8,7 +8,7 @@ export const variants = {
 }
 
 const defaultStyle = css`
-  background-color: ${({ theme }) => theme.colors.brandColor};
+  background-color: ${({ theme }) => theme.colors.darkBlue};
   color: ${({ theme }) => theme.colors.white};
 `
 

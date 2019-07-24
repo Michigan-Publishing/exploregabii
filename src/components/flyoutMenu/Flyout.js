@@ -8,7 +8,12 @@ const GlobalStyle = createGlobalStyle`
   #main-menu {
     background-color: ${props => props.theme.colors.darkBlue};
     z-index: 1001;
+
+    & a {
+      background-color: ${props => props.theme.colors.lightBlue} !important;
+    }
   }
+
 `
 
 const Heading = styled.h2`

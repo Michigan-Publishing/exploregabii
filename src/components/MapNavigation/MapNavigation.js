@@ -3,7 +3,21 @@ import styled from "styled-components"
 import ImageMapper from "./ImageMapper"
 import { unescapeWithRegexp } from "../../utils/escape"
 import { Box } from "rebass"
+import Button from "../button"
 
+const MobileBox = styled(Box)`
+  display: none;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    display: block;
+  }
+`
+const MapBox = styled(Box)`
+  @media (max-width: 640px) {
+    display: none;
+  }
+`
 const AreaTag = styled.span`
   position: absolute;
   color: #fff;
@@ -53,34 +67,49 @@ export default class MapNavigation extends Component {
     }
 
     return (
-      <Box {...this.props}>
-        <div style={{ position: "relative" }}>
-          {imageSrc && (
-            <ImageMapper
-              ref={mapper => (this.mapper = mapper)}
-              src={imageSrc}
-              map={map}
-              alt={alt}
-              key="mapper"
-            />
-          )}
-          {this.mapper &&
-            this.state.areaCoords &&
-            !this.props.hideTag &&
-            map.areas.map(area => {
-              const coords = this.state.areaCoords[area.name]
-              return (
-                <AreaTag
-                  key={area.name}
-                  alt={area.name}
-                  style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}
-                >
-                  {area.name}
-                </AreaTag>
-              )
-            })}
-        </div>
-      </Box>
+      <>
+        <MapBox {...this.props}>
+          <div style={{ position: "relative" }}>
+            {imageSrc && (
+              <ImageMapper
+                ref={mapper => (this.mapper = mapper)}
+                src={imageSrc}
+                map={map}
+                alt={alt}
+                key="mapper"
+              />
+            )}
+            {this.mapper &&
+              this.state.areaCoords &&
+              !this.props.hideTag &&
+              map.areas.map(area => {
+                const coords = this.state.areaCoords[area.name]
+                return (
+                  <AreaTag
+                    key={area.name}
+                    alt={area.name}
+                    style={{ top: `${coords[1]}px`, left: `${coords[0]}px` }}
+                  >
+                    {area.name}
+                  </AreaTag>
+                )
+              })}
+          </div>
+        </MapBox>
+        <MobileBox>
+          {map.areas.map(item => (
+            <Button
+              as="a"
+              href={item.href}
+              style={{ color: "#FFF" }}
+              width="100%"
+              mb="12px"
+            >
+              {item.name}
+            </Button>
+          ))}
+        </MobileBox>
+      </>
     )
   }
 }
