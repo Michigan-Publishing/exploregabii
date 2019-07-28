@@ -9,6 +9,7 @@ module.exports = {
         name: "markdown-pages",
       },
     },
+    "gatsby-transformer-javascript-frontmatter",
     {
       resolve: "gatsby-mdx",
       options: {

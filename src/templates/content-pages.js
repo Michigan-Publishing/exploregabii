@@ -107,6 +107,7 @@ class ContentPages extends Component {
 
     const useMarkdownInsteadOfMDX = isIE11()
 
+    console.log('HERE', this.props)
     return (
       <Breakpoints>
         <SiteContainer

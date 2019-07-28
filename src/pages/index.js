@@ -1,36 +1,10 @@
 import React from "react"
+import { useStaticQuery } from "gatsby"
 import Layout from "../components/Layout"
 import MapNavigation from "../components/MapNavigation"
 import imageSrc from "./quadrant_map.png"
 import { escapeWithRegexp } from "../utils/escape"
 import styled from "styled-components"
-
-const links = [
-  {
-    title: "one",
-    slug: "/test1",
-    children: [
-      { title: "one.first", slug: "/test1.one" },
-      { title: "one.second", slug: "/test1.two" },
-    ],
-  },
-  {
-    title: "two",
-    slug: "/test2",
-    children: [
-      { title: "two.first", slug: "/test1.one" },
-      { title: "two.second", slug: "/test1.two" },
-    ],
-  },
-  {
-    title: "three",
-    slug: "/test3",
-    children: [
-      { title: "three.first", slug: "/test3.one" },
-      { title: "three.second", slug: "/test3.two" },
-    ],
-  },
-]
 
 const areas = [
   {
@@ -69,15 +43,49 @@ var MAP = {
   areas,
 }
 
-export default () => (
-  <Layout footerLinks={links}>
-    <Layout.Content my={24} p={20}>
-      <MapNavigation
-        ml="auto"
-        mr="auto"
-        imageSrc={imageSrc}
-        map={escapeWithRegexp(JSON.stringify(MAP))}
-      />
-    </Layout.Content>
-  </Layout>
-)
+export default props => {
+  // const data = useStaticQuery(graphql`
+  //   query BasicQuery {
+  //     allMdx {
+  //       edges {
+  //         node {
+  //           id
+  //           fields {
+  //             slug
+  //           }
+  //           frontmatter {
+  //             key
+  //             parentKey
+  //             title
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+
+  return (
+    <Layout>
+      <Layout.Content my={24} p={20}>
+        <MapNavigation
+          ml="auto"
+          mr="auto"
+          imageSrc={imageSrc}
+          map={escapeWithRegexp(JSON.stringify(MAP))}
+        />
+      </Layout.Content>
+    </Layout>
+  )
+}
+
+export const frontmatter = {
+  title: "Explore Gabii",
+  written: "2019-04-01",
+  layoutType: "post",
+  key: "explore-gabii",
+  parentKey: undefined,
+}
+
+export const query = `
+
+`

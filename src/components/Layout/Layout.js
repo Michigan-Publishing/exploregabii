@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
+import { useStaticQuery } from "gatsby"
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
 
 import { theme, Provider } from "../../constants/theme"
@@ -7,6 +8,7 @@ import Header from "../Header"
 import Footer from "../Footer"
 import FlyoutMenu from "../flyoutMenu"
 import src from "../../pages/background.png"
+
 import { LayoutWrapper as OriginalLayoutWrapper } from "../LayoutWrapper"
 
 const LayoutWrapper = styled.div`
@@ -33,6 +35,19 @@ const Content = styled(OriginalLayoutWrapper)`
   background-color: ${({ theme }) => theme.colors.trueWhite};
   border: 1px solid ${({ theme }) => theme.colors.darkBlue};
 `
+
+function getNodeTree(nodes, key = null, level = 0) {
+  const newNodes = nodes.filter(item => item.node.frontmatter.parentKey === key)
+
+  const output = newNodes.map(({ node }) => ({
+    title: node.frontmatter.title,
+    slug: node.fields.slug,
+    level: level,
+    children: getNodeTree(nodes, node.frontmatter.key, level + 1),
+  }))
+
+  return output
+}
 
 function Layout({ footerLinks, children, ...props }) {
   const [showFlyout, setShowFlyout] = useState(false)
@@ -65,7 +80,7 @@ function Layout({ footerLinks, children, ...props }) {
           </Header>
           <Body>{children}</Body>
           <Footer links={footerLinks} />
-          <FlyoutMenu isVisible={showFlyout} items={[]} />
+          <FlyoutMenu isVisible={showFlyout} items={footerLinks} />
         </LayoutWrapper>
       </Provider>
     </MenuProvider>
@@ -74,4 +89,32 @@ function Layout({ footerLinks, children, ...props }) {
 
 Layout.Content = Content
 
-export default Layout
+function DataWrapper(props) {
+  const data = useStaticQuery(graphql`
+    query BasicQuery {
+      allMdx {
+        edges {
+          node {
+            id
+            fields {
+              slug
+            }
+            frontmatter {
+              key
+              parentKey
+              title
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const nodes = getNodeTree(data.allMdx.edges)
+
+  return <Layout {...props} footerLinks={nodes[0].children} />
+}
+
+DataWrapper.Content = Content
+
+export default DataWrapper
