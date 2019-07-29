@@ -9,28 +9,28 @@ import styled from "styled-components"
 const areas = [
   {
     shape: "rect",
-    href: "/previous-explorations",
+    href: "/pages/explore-gabii/previous-explorations/",
     coords: "[ 0, 0, 496, 435 ]",
     name: "Previous Explorations",
     alt: "Visit previous explorations",
   },
   {
     shape: "rect",
-    href: "/?path=/story/contentpage--default",
+    href: "/pages/explore-gabii/current-excavations/",
     coords: "[ 502, 0, 907, 390 ]",
     name: "Current Excavations",
     alt: "Visit current excavations",
   },
   {
     shape: "rect",
-    href: "/?path=/story/contentpage--default",
+    href: "/pages/explore-gabii/the-gabii-project/",
     coords: "[ 0, 443, 502, 670 ]",
     name: "Introduction to the Gabii Project",
     alt: "Visit an introduction to the Gabii project",
   },
   {
     shape: "rect",
-    href: "/?path=/story/contentpage--default",
+    href: "/pages/explore-gabii/the-environmant-of-gabii/",
 
     coords: "[ 502, 390, 907, 670 ]",
     name: "The Environment of Gabii",
