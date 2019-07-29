@@ -35,6 +35,7 @@ exports.createPages = ({ graphql, actions }) => {
                     parentKey
                     templateKey
                     title
+                    backgroundImage
                   }
                 }
               }
@@ -52,7 +53,14 @@ exports.createPages = ({ graphql, actions }) => {
           const {
             id,
             fields,
-            frontmatter: { templateKey, title, section, key, parentKey },
+            frontmatter: {
+              templateKey,
+              title,
+              section,
+              key,
+              parentKey,
+              backgroundImage,
+            },
           } = node
           const slug = fields ? fields.slug : undefined
 
@@ -70,6 +78,7 @@ exports.createPages = ({ graphql, actions }) => {
               section,
               key,
               parentKey,
+              backgroundImage,
               somethingRandom: "hi",
             },
           })

@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import MDXRenderer from "gatsby-mdx/mdx-renderer"
 import { withMDXScope } from "gatsby-mdx/context"
 import { Helmet } from "react-helmet"
+import styled from "styled-components"
 
 import { ContentPage } from "../components/ContentPage"
 import ContentArea from "../components/contentArea"
@@ -82,21 +83,14 @@ class ContentWithBackground extends Component {
     this.state = { headerOffset: 0 }
   }
 
-  componentDidMount() {
-    document.body.classList.remove("modalOpen")
-
-    this.setState({
-      headerOffset: this.siteContainer
-        ? this.siteContainer.headingWrapper.clientHeight
-        : 0,
-    })
-  }
+  componentDidMount() {}
 
   render() {
     const {
       pageContext: { title, backgroundImage },
       data,
     } = this.props
+
     const contextComponents = {
       FulcrumImageVideo,
       FulcrumTextAudio,
@@ -113,6 +107,7 @@ class ContentWithBackground extends Component {
         <SiteContainer
           ref={siteContainer => (this.siteContainer = siteContainer)}
           {...this.props}
+          skipLayout
         >
           <Helmet>
             <meta charSet="utf-8" />
@@ -122,22 +117,17 @@ class ContentWithBackground extends Component {
             <h1>{title}</h1>
           </VisuallyHidden>
           {hasContent(data) && (
-            <ContentPage imageSrc={backgroundImage}>
-              <h1>{title}</h1>
-              {useMarkdownInsteadOfMDX ? (
-                <Markdown>{getBodyContent(data)}</Markdown>
-              ) : (
-                <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>
-              )}
-            </ContentPage>
-          )}
-          {shouldShowRelatedContent(data) && (
-            <RelatedContent relatedLinks={mapSiblingContent(data)} />
-          )}
-          {shouldShowChildLinks(data) && (
-            <Navigation
-              linkProperties={mapLinkProperties(data.childPages.edges)}
-            />
+            <>
+              <ContentPage imageSrc={backgroundImage}>
+                <h1>{title}</h1>
+
+                {useMarkdownInsteadOfMDX ? (
+                  <Markdown>{getBodyContent(data)}</Markdown>
+                ) : (
+                  <MDXRenderer {...newProps}>{data.post.code.body}</MDXRenderer>
+                )}
+              </ContentPage>
+            </>
           )}
         </SiteContainer>
       </Breakpoints>
