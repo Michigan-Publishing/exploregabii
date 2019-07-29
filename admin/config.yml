@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  repo: BlackMuttMedia/exploregabii
+  branch: master
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    folder: "src/pages"
+    create: true
+    extension: mdx
+    format: frontmatter
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Template"
+        name: "templateKey"
+        widget: "select"
+        default: "content-pages"
+        options: 
+          - { label: "Content Page", value: "content-pages" }
+          - { label: "Content Page With Background", value: "content-with-background" }
+          - { label: "Map Navigation", value: "map-navigation" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Background Image", name: "backgroundImage", widget: "image", required: false }
+      - { label: "Key", name: "key", widget: "string" }
+      - label: "Parent Key"
+        name: "parentKey"
+        widget: "relation"
+        collection: "pages"
+        searchFields: ["title", "templateKey", "key"]
+        displayFields: ["title"]
+        valueField: "key"
+        required: false
+      - { label: "Body", name: "body", widget: "markdown", required: false }
