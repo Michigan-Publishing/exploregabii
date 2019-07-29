@@ -34,6 +34,8 @@ const Body = styled.div`
 const Content = styled(OriginalLayoutWrapper)`
   background-color: ${({ theme }) => theme.colors.trueWhite};
   border: 1px solid ${({ theme }) => theme.colors.darkBlue};
+  display: flex;
+  flex-direction: column;
 `
 
 function getNodeTree(nodes, key = null, level = 0) {

@@ -83,12 +83,6 @@ class ContentPages extends Component {
 
   componentDidMount() {
     document.body.classList.remove("modalOpen")
-
-    this.setState({
-      headerOffset: this.siteContainer
-        ? this.siteContainer.headingWrapper.clientHeight
-        : 0,
-    })
   }
 
   render() {
@@ -107,7 +101,6 @@ class ContentPages extends Component {
 
     const useMarkdownInsteadOfMDX = isIE11()
 
-    console.log('HERE', this.props)
     return (
       <Breakpoints>
         <SiteContainer

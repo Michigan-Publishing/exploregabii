@@ -4,7 +4,6 @@ import Background from "../background"
 import Breadcrumbs from "../breadcrumbs"
 import Layout from "../Layout"
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
-import FlyoutMenu from "../flyoutMenu"
 import Footer, { FOOTER_HEIGHT } from "../Footer"
 import { buildFrontmatterLookup } from "../../utils/node"
 import palette from "../../utils/palette"
@@ -36,7 +35,6 @@ const HeadingWrapper = styled.div`
 `
 
 const ContentArea = styled.div`
-  border: 3px solid #bad !important;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -76,9 +74,6 @@ export default class extends Component {
 
   componentDidMount() {
     this.buildLinkTree()
-    this.setState({
-      headingHeight: this.headingWrapper.clientHeight,
-    })
   }
 
   buildLinkTree = () => {
@@ -139,42 +134,10 @@ export default class extends Component {
           }}
         >
           <Layout>
-            <Fragment>
-              <HeadingWrapper
-                ref={headingWrapper => (this.headingWrapper = headingWrapper)}
-                id="heading-wrapper"
-              >
-                <HeadingRow>
-                  <Breadcrumbs items={this.buildBreadcrumbLinks()} />
-                  {
-                    <MenuConsumer>
-                      {({ closeElement, setToggleElement }) => (
-                        <span style={{ fontSize: "1.5rem" }}>
-                          <HamburgerButton
-                            setToggleElement={setToggleElement}
-                            closeElement={closeElement}
-                            onClick={() => {
-                              document.body.classList.add("modalOpen")
-                            }}
-                          />
-                        </span>
-                      )}
-                    </MenuConsumer>
-                  }
-                </HeadingRow>
-              </HeadingWrapper>
-
-              <Background>
-                <FlyoutMenu
-                  isVisible={this.state.showFlyout}
-                  items={linkTree}
-                />
-                <ContentArea style={contentStyles} id="content-area-wrapper">
-                  {this.props.children}
-                </ContentArea>
-                <Footer links={linkTree} />
-              </Background>
-            </Fragment>
+            <Layout.Content my={24}>
+              <Breadcrumbs items={this.buildBreadcrumbLinks()} />
+              {this.props.children}
+            </Layout.Content>
           </Layout>
         </MenuProvider>
       </Provider>
