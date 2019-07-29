@@ -40,9 +40,9 @@ export default class MapNavigation extends Component {
 
   componentDidMount() {
     if (this.mapper && this.mapper.computeCenter) {
-      const areaCoords = JSON.parse(
+      const areaCoords = (JSON.parse(
         unescapeWithRegexp(this.props.map)
-      ).areas.reduce((accum, area) => {
+      ).areas || []).reduce((accum, area) => {
         area.coords = JSON.parse(area.coords)
         accum[area.name] = this.mapper.computeCenter(area)
         return accum
