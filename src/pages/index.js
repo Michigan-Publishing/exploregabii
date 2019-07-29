@@ -44,26 +44,6 @@ var MAP = {
 }
 
 export default props => {
-  // const data = useStaticQuery(graphql`
-  //   query BasicQuery {
-  //     allMdx {
-  //       edges {
-  //         node {
-  //           id
-  //           fields {
-  //             slug
-  //           }
-  //           frontmatter {
-  //             key
-  //             parentKey
-  //             title
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-
   return (
     <Layout>
       <Layout.Content my={24} p={20}>
