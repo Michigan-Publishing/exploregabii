@@ -125,6 +125,9 @@ export default class extends Component {
     const { contentStyles } = this.props
     const linkTree = this.buildLinkTree()
 
+    if (this.props.skipLayout) {
+      return <Provider theme={theme}>{this.props.children}</Provider>
+    }
     return (
       <Provider theme={theme}>
         <MenuProvider
