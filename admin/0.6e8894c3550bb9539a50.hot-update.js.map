@@ -1,0 +1,1 @@
+{"version":3,"file":"0.6e8894c3550bb9539a50.hot-update.js","sources":["webpack:///./src/cms/cms.js"],"sourcesContent":["import CMS from \"netlify-cms\"\nimport {\n  FulcrumAudio,\n  FulcrumImage,\n  FulcrumText,\n  FulcrumVideo,\n  MapNavigation,\n} from \"./editorComponents\"\n"],"mappings":";;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;;;;;A","sourceRoot":""}
