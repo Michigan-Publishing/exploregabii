@@ -22,6 +22,7 @@ collections:
         options: 
           - { label: "Content Page", value: "content-pages" }
           - { label: "Content Page With Background", value: "content-with-background" }
+          - { label: "Map Navigation", value: "map-navigation" }
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Background Image", name: "backgroundImage", widget: "image", required: false }
       - { label: "Key", name: "key", widget: "string" }
