@@ -100,6 +100,8 @@ class ContentPages extends Component {
       FulcrumTextAudio,
       AboutTheAuthor,
     }
+
+    console.log("HERE", this.props)
     const newScope = { ...this.props.scope, ...contextComponents }
     const newProps = { ...{ ...this.props, ...{ scope: newScope } } }
 

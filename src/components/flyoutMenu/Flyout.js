@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react"
 import styled, { createGlobalStyle } from "styled-components"
-import { Link } from "gatsby"
+import { Link, useStaticQuery } from "gatsby"
 import palette from "../../utils/palette"
 import { Backdrop, Menu, MenuConsumer } from "react-flyout-menu"
 
@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     z-index: 1001;
 
     & a {
-      background-color: ${props => props.theme.colors.lightBlue} !important;
+      background-color: ${props => props.theme.colors.lightBlue};
     }
   }
 
@@ -81,6 +81,16 @@ export default class extends Component {
   render() {
     const { items } = this.props
 
+    // const data = useStaticQuery(graphql`
+    //   query HeaderQuery {
+    //     site {
+    //       siteMetadata {
+    //         title
+    //       }
+    //     }
+    //   }
+    // `)
+    // debugger
     const sortedItems = items.sort((a, b) => {
       return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
     })
