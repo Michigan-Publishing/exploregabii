@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { useStaticQuery } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
 
 import { theme, Provider } from "../../constants/theme"
