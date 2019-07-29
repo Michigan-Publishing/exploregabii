@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     z-index: 1001;
 
     & a {
+      color: ${({ theme }) => theme.colors.white} !important;
+    }
+    & a.menu-close {
       background-color: ${props => props.theme.colors.lightBlue};
     }
   }
@@ -41,7 +44,7 @@ const LinkWrapper = styled.div`
   font-size: ${props => 1.4 - 0.1 * props.depth}rem;
   flex-direction: ${props => (props.depth >= 1 ? "row" : "column")};
   font-weight: ${props => (props.depth >= 1 ? "normal" : "bold")};
-  opacity: ${props => (props.depth >= 1 ? 0.8 : 0.6)};
+  opacity: 1;
   color: #fff;
   padding-left: ${props => (props.depth >= 1 ? 1 : 0)}rem;
   padding-top: ${props => (props.depth < 1 ? 0.5 : 0)}rem;
