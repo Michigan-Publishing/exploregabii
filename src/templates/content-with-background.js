@@ -107,7 +107,7 @@ class ContentWithBackground extends Component {
         <SiteContainer
           ref={siteContainer => (this.siteContainer = siteContainer)}
           {...this.props}
-          skipLayout
+          minimalLayout
         >
           <Helmet>
             <meta charSet="utf-8" />

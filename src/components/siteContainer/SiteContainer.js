@@ -125,6 +125,21 @@ export default class extends Component {
     const { contentStyles } = this.props
     const linkTree = this.buildLinkTree()
 
+    if (this.props.minimalLayout) {
+      return (
+        <Provider theme={theme}>
+          <MenuProvider
+            onClose={() => {
+              this.setState({ showFlyout: false })
+              document.body.classList.remove("modalOpen")
+            }}
+          >
+            <Layout>{this.props.children}</Layout>
+          </MenuProvider>
+        </Provider>
+      )
+    }
+
     if (this.props.skipLayout) {
       return <Provider theme={theme}>{this.props.children}</Provider>
     }
