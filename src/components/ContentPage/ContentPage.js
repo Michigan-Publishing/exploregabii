@@ -7,14 +7,13 @@ import Button from "../button"
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
   background: center / cover no-repeat url("${props => props.src}");
   position: relative;
 `
 
 const Content = styled.div`
   position: absolute;
-  top: 0;
+  top: 2rem;
   right: 60px;
   width: 40%;
   min-width: 400px;
@@ -67,18 +66,9 @@ const BackButton = styled(Button)`
   margin-bottom: 20px;
 `
 
-export function ContentPage({ imageSrc, children, logoArea }) {
+export function ContentPage({ imageSrc, children, logoArea, height }) {
   return (
-    <Container src={imageSrc}>
-      <TopLeft>
-        <LogoContainer>
-          <a href="/">
-            <Logo />
-          </a>
-          <BackButton onClick={() => window.history.back()}>Go back</BackButton>
-        </LogoContainer>
-      </TopLeft>
-
+    <Container src={imageSrc} style={{ height }}>
       <Content>{children}</Content>
     </Container>
   )
