@@ -6,8 +6,8 @@ import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 const ContentWrapper = styled.main`
   padding: 0 2rem;
   align-self: center;
-  max-width: 95%; 
-  
+  max-width: 95%;
+
   & h2 {
     font-size: 2rem;
     font-weight: 800;
@@ -17,6 +17,10 @@ const ContentWrapper = styled.main`
   & p,
   li {
     margin: 1.5rem 0.75rem;
+  }
+
+  & img {
+    max-width: 100%;
   }
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {

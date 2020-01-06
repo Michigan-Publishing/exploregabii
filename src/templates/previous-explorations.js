@@ -35,7 +35,7 @@ const links = [
 const areas = [
   {
     shape: "rect",
-    href: "/temple-of-juno",
+    href: "/explore-gabii/previous-explorations/temple-of-juno/",
     coords: "[ 365, 356, 183, 218 ]",
     name: "Temple of Juno",
     alt: "Temple of Juno",

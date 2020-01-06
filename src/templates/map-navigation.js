@@ -35,35 +35,36 @@ const links = [
 const areas = [
   {
     shape: "rect",
-    href: "/temple-of-juno",
+    href: "/pages/explore-gabii/previous-explorations/temple-of-juno",
     coords: "[ 365, 356, 183, 218 ]",
     name: "Temple of Juno",
     alt: "Temple of Juno",
   },
   {
     shape: "rect",
-    href: "/hamiltons-form",
+    href: "/pages/explore-gabii/previous-explorations/hamiltons-forum",
     coords: "[369,295,505,424]",
     name: "Hamilton's Forum",
     alt: "Hamilton's Forum",
   },
   {
     shape: "rect",
-    href: "/area-f",
+    href: "/pages/explore-gabii/current-excavations/excavation-areas/area-f/",
     coords: "[ 544,273,616,342]",
     name: "Area F",
     alt: "Area F",
   },
   {
     shape: "rect",
-    href: "/area-b",
+    href: "/pages/explore-gabii/current-excavations/excavation-areas/area-b/",
     coords: "[573,176,709,271]",
     name: "Area B",
     alt: "Area B",
   },
   {
     shape: "rect",
-    href: "/lago-di-castiglione",
+    href:
+      "/pages/explore-gabii/the-environmant-of-gabii/lago-di-cassatiglione/",
     coords: "[ 5,7,478,206]",
     name: "Lago di Castiglione",
     alt: "Lago di Castiglione",
