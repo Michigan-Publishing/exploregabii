@@ -6,6 +6,7 @@ import { TABLET_LANDSCAPE_WIDTH } from "../../constants"
 import Heading from "../Heading"
 
 import { LayoutWrapper } from "../LayoutWrapper"
+import ClassicsLogo from "./classics-logo.png"
 
 const FooterWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBlue};
@@ -16,6 +17,7 @@ const LinkContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  flex-wrap: wrap;
   align-items: flex-start;
   line-height: 1.4rem;
 
@@ -33,6 +35,24 @@ const Column = styled.div`
   flex-direction: column;
   margin-right: 2rem;
   min-width: 10rem;
+  margin-top: 1rem;
+
+  &.linkColumn {
+    min-width: 12.5rem;
+    width: 12.5rem;
+  }
+
+  &.imageColumn {
+    flex-shrink: 1;
+    img {
+      background-color: #00274c;
+      padding: 1rem;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      max-width: 100%;
+    }
+  }
 
   @media (max-width: ${TABLET_LANDSCAPE_WIDTH}px) {
     min-width: unset;
@@ -81,9 +101,21 @@ function Footer({ links }) {
                 return a.title > b.title ? 1 : a.title < b.title ? -1 : 0
               })
               .map(link => (
-                <Column key={link.slug}>{getLinkColumn(link, Link)}</Column>
+                <Column className="linkColumn" key={link.slug}>
+                  {getLinkColumn(link, Link)}
+                </Column>
               ))}
           </LinkContainer>
+        </Column>
+        <Column className="imageColumn">
+          <a href="https://lsa.umich.edu/classics">
+            <img
+              src={ClassicsLogo}
+              width="874"
+              height="100"
+              alt="The Department of Classical Studies"
+            />
+          </a>
         </Column>
       </LayoutWrapper>
     </FooterWrapper>
