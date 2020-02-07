@@ -46,7 +46,9 @@ const BreadcrumbWrapper = styled.div`
   }
 `
 
-const LinkWrapper = styled.span``
+const LinkWrapper = styled.span`
+  text-transform: capitalize;
+`
 export default class extends Component {
   render() {
     const { items } = this.props
