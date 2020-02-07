@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   #main-menu {
     background-color: ${props => props.theme.colors.darkBlue};
     z-index: 1001;
+    width: 50%;
 
     & a {
       color: ${({ theme }) => theme.colors.white} !important;

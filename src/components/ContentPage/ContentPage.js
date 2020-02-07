@@ -9,6 +9,8 @@ const Container = styled.div`
   width: 100vw;
   background: center / cover no-repeat url("${props => props.src}");
   position: relative;
+  background-position: 0% 20% ;
+
 `
 
 const Content = styled.div`
@@ -21,6 +23,12 @@ const Content = styled.div`
   color: ${({ theme }) => theme.colors.white};
   padding: 2rem;
   line-height: 1.25rem;
+  overflow-y: auto;
+  max-height: 85%;
+
+  img {
+    max-width: 100%;
+  }
 
   @media (max-width: 768px) {
     position: unset;
