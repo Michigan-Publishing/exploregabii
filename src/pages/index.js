@@ -35,7 +35,7 @@ const areas = [
   {
     shape: "rect",
     href: "/pages/explore-gabii/the-gabii-project/",
-    coords: "[4, 315, 469, 617]",
+    coords: "[471, 314, 949, 617]",
     name: "Introduction to the Gabii Project",
     alt: "Visit an introduction to the Gabii project",
   },
@@ -43,7 +43,7 @@ const areas = [
     shape: "rect",
     href: "/pages/explore-gabii/the-environmant-of-gabii/",
 
-    coords: "[471, 314, 949, 617]",
+    coords: "[4, 315, 469, 617]",
     name: "The Environment of Gabii",
     alt: "Visit the environment of Gabii",
   },

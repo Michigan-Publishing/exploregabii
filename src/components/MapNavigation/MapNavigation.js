@@ -22,7 +22,7 @@ const AreaTag = styled.span`
   position: absolute;
   color: #fff;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(36, 96, 134, 0.8);
   transform: translate3d(-50%, -50%, 0);
   border-radius: 5px;
   pointer-events: none;
