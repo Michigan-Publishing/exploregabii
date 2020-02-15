@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useLayoutEffect } from "react"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import { MenuProvider, MenuConsumer, HamburgerButton } from "react-flyout-menu"
@@ -53,6 +53,28 @@ function getNodeTree(nodes, key = null, level = 0) {
 
 function Layout({ footerLinks, children, ...props }) {
   const [showFlyout, setShowFlyout] = useState(false)
+  useLayoutEffect(() => {
+    document.querySelectorAll("img").forEach(img => {
+      if (img.title) {
+        try {
+          const parent = img.parentElement
+          parent.style.position = "relative"
+          var node = document.createElement("div")
+          node.style.position = "absolute"
+          node.style.bottom = "0"
+          node.style.left = "0"
+          node.style.right = "0"
+          node.style.backgroundColor = "rgba(0,0,0, .8)"
+          node.style.color = "#FFF"
+          node.style.padding = "12px"
+          node.textContent = img.title
+          parent.appendChild(node)
+        } catch (ex) {
+          console.error(ex)
+        }
+      }
+    })
+  }, [])
 
   return (
     <MenuProvider
