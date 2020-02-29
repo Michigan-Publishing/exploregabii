@@ -27,6 +27,7 @@ const AreaTag = styled.span`
   border-radius: 5px;
   pointer-events: none;
   z-index: 1000;
+  white-space: nowrap;
 `
 
 export default class MapNavigation extends Component {
