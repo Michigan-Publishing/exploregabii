@@ -64,7 +64,7 @@ const areas = [
   {
     shape: "rect",
     href:
-      "/pages/explore-gabii/the-environmant-of-gabii/lago-di-cassatiglione/",
+      "/pages/explore-gabii/the-environmant-of-gabii/lago-di-castiglione/",
     coords: "[ 5,7,478,206]",
     name: "Lago di Castiglione",
     alt: "Lago di Castiglione",
