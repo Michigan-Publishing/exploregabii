@@ -55,13 +55,13 @@ const areas = [
     coords: "[744,393,810,393,839,450,765,445,739,427]",
     shape: "poly",
   },
-  {
-    alt: "Area E",
-    name: "Area E",
-    href: "excavation-areas/area-e",
-    coords: "[901,251,968,333,836,394,810,373,728,386,715,355,882,250]",
-    shape: "poly",
-  },
+  // {
+  //   alt: "Area E",
+  //   name: "Area E",
+  //   href: "excavation-areas/area-e",
+  //   coords: "[901,251,968,333,836,394,810,373,728,386,715,355,882,250]",
+  //   shape: "poly",
+  // },
   {
     alt: "Area D",
     name: "Area D",
