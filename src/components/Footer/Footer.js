@@ -7,6 +7,7 @@ import Heading from "../Heading"
 
 import { LayoutWrapper } from "../LayoutWrapper"
 import ClassicsLogo from "./classics-logo.png"
+import HumanitiesCollaboratoryLogo from './hc_logo.png';
 
 const FooterWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.lightBlue};
@@ -45,12 +46,15 @@ const Column = styled.div`
   &.imageColumn {
     flex-shrink: 1;
     img {
-      background-color: #00274c;
       padding: 1rem;
       width: auto;
       height: auto;
       object-fit: contain;
       max-width: 100%;
+    }
+
+    img.background {
+      background-color: #00274c;
     }
   }
 
@@ -110,12 +114,20 @@ function Footer({ links }) {
         <Column className="imageColumn">
           <a href="https://lsa.umich.edu/classics">
             <img
+              className="background"
               src={ClassicsLogo}
               width="874"
               height="100"
               alt="The Department of Classical Studies"
             />
           </a>
+
+          <a href="https://sites.lsa.umich.edu/collaboratory/">
+            <img src={HumanitiesCollaboratoryLogo}
+              alt="Visit the Humanities Collaboratory" />
+          </a>
+          <p>Supported by the Michigan Humanities Collaboratory</p>
+          <small>&copy; Regents of the University of Michigan</small>
         </Column>
       </LayoutWrapper>
     </FooterWrapper>
