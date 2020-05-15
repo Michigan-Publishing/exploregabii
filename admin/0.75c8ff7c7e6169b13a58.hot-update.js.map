@@ -1,1 +1,0 @@
-{"version":3,"file":"0.75c8ff7c7e6169b13a58.hot-update.js","sources":["webpack:///./src/cms/cms.js"],"sourcesContent":["import CMS from \"netlify-cms\"\nimport {\n  MapNavigation,\n} from \"./editorComponents\"\n\nCMS.registerEditorComponent(MapNavigation);"],"mappings":";;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AACA;AAIA;;;;A","sourceRoot":""}
